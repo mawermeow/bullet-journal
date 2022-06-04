@@ -40,6 +40,7 @@ async function handler(req, res) {
     const result = await db.collection('users').insertOne({
         email: email,
         password: hashedPassword,
+        journal:[]
     });
 
     res.status(201).json({ message: '帳號註冊完成！' });

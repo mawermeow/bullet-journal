@@ -1,10 +1,12 @@
 import {getSession} from "next-auth/client";
+import AddLog from "../components/bullet/AddLog";
 
 const DailyLogPage = (props) => {
     return <div className='center'>
         <input type="text"/>
         <div>事件｜任務｜註解</div>
         <p>點了就會新增今天這個時間的項目，一直往下加</p>
+        <AddLog/>
         <hr/>
         <ul>
             <li>任務：-</li>
