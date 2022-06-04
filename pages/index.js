@@ -1,11 +1,13 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 export default function Home() {
-    return (
-        <>
-            <Head>
-                <meta name="description" content="線上子彈筆記本"/>
-            </Head>
-        </>
-    )
+    return <div className='center'>
+        <Head>
+            <meta name="description" content="什麼是子彈筆記？"/>
+        </Head>
+        <h1>什麼是子彈筆記</h1>
+        <h1>本網站使用方法</h1>
+    </div>
+
+
 }
