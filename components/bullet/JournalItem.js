@@ -1,5 +1,6 @@
 import classes from "./JournalItem.module.css";
-import JournalItemDetail from "../ui/JournalItemDetail";
+import {useContext} from "react";
+import JournalDetailContext from "../../store/JournalDetailContext";
 
 import Trash from "../icon/Trash";
 import CheckCircle from "../icon/CheckCircle";
@@ -29,20 +30,33 @@ const typeToIcon = (type) => {
 };
 
 const JournalItem = (props) => {
-    const {data} = props;
-    const [iconType,setIconType]=useState(data.type);
+    const detailLogCtx = useContext(JournalDetailContext);
+    const {detailLog,changedLog,clearChangedLog}= detailLogCtx;
+    const {item} = props;
+    const [iconType,setIconType]=useState(item.type);
     const Icon = typeToIcon(iconType);
+
+    useEffect(()=>{
+        if(changedLog){
+            props.onChangeLog(changedLog);
+            clearChangedLog();
+        }
+    },[changedLog])
 
     const clickIcon=()=>{
         if(iconType==='task'){
             setIconType('taskOK')
-            props.onChangeLog({...data,type:'taskOK'});
+            props.onChangeLog({...item,type:'taskOK'});
         }
         if(iconType==='taskOK'){
             setIconType('task')
-            props.onChangeLog({...data,type:'task'});
+            props.onChangeLog({...item,type:'task'});
         }
     }
+
+    const clickTitle=()=>{
+        detailLogCtx.showDetailLog(item);
+    };
 
     const itemClass = `${classes.item} ${iconType==='task'?classes.task:''}`
 
@@ -50,7 +64,7 @@ const JournalItem = (props) => {
           <span className={classes.icon} onClick={clickIcon}>
             <Icon/>
           </span>
-          <span>{data.title}</span>
+          <span onClick={clickTitle}>{item.title}</span>
     </li>;
 };
 export default JournalItem;

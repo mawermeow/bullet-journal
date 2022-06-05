@@ -11,14 +11,11 @@ const Layout=(props)=>{
 
     const detailLogCtx = useContext(JournalDetailContext);
     const detailLog = detailLogCtx.detailLog;
-    console.log(detailLog)
 
     return <>
         <MainNavigation/>
         <main>{props.children}</main>
-        {detailLog && <JournalItemDetail
-            itemData={detailLog}
-        />}
+        {detailLog && <JournalItemDetail/>}
         {notification && <Notification
             title={notification.title}
             message={notification.message}

@@ -22,7 +22,7 @@ const AddLog=(props)=>{
             id:d.toLocaleString('chinese',{hour12:false})
         };
 
-        notificationCtx.showNotification({status:'render',title:'上傳中',message:'正在新增您的筆記'});
+        notificationCtx.showNotification({status:'render',title:'更新中',message:'正在更新您的筆記'});
         const result = await fetch('api/user/journal',{
             method:'PATCH',
             body:JSON.stringify(newLog),
@@ -31,7 +31,7 @@ const AddLog=(props)=>{
             }
         })
         if(result.ok){
-            notificationCtx.showNotification({status:'success',title:'成功',message:'筆記新增完成'});
+            notificationCtx.showNotification({status:'success',title:'成功',message:'筆記更新完成'});
             props.onAddLog(newLog);
             setLogTitle('')
         }else{
@@ -51,7 +51,7 @@ const AddLog=(props)=>{
                 <div className={classes.actions}>
                     <button onClick={()=>setLogType('task')}>任務</button>
                     <button onClick={()=>setLogType('event')}>經驗</button>
-                    <button onClick={()=>setLogType('notes')}>註解</button>
+                    <button onClick={()=>setLogType('notes')}>註記</button>
                 </div>
             </form>
         </section>
