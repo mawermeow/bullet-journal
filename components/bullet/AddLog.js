@@ -15,6 +15,11 @@ const AddLog=(props)=>{
     const addLogHandler=async (event)=>{
         event.preventDefault();
 
+        if(logTitle.trim().length===0){
+            notificationCtx.showNotification({status:'error',title:'錯誤',message:'筆記不得為空白'});
+            return;
+        }
+
         const d = new Date();
 
         const newLog = {
