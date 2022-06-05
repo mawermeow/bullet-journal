@@ -4,17 +4,16 @@ import JournalDetailContext from "../../store/JournalDetailContext";
 
 const JournalItemDetail = () => {
     const detailLogCtx = useContext(JournalDetailContext);
-    const {detailLog} =detailLogCtx;
+    const {detailLog} = detailLogCtx;
     const [title, setTitle] = useState(detailLog.title);
-    const [date,setDate] = useState(detailLog.date);
+    const [date, setDate] = useState(detailLog.date);
 
-    const saveDetailLog=()=>{
-        // const formatDate = date.toString().replace('-','/');
-        detailLogCtx.saveDetailLog({...detailLog,title,date});
+    const saveDetailLog = () => {
+        detailLogCtx.saveDetailLog({...detailLog, title, date});
     };
 
-    const deleteDetailLog=()=>{
-        detailLogCtx.saveDetailLog({...detailLog,type:'DELETE'});
+    const deleteDetailLog = () => {
+        detailLogCtx.saveDetailLog({...detailLog, type: 'DELETE'});
     };
 
     return <>

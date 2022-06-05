@@ -4,13 +4,9 @@ import NotificationContext from "../../store/NotificationContext";
 import {useContext, useEffect, useState} from "react";
 
 const JournalList=(props)=>{
-    // const [items,setItems] = useState([]);
+
     const {items} = props;
     const notificationCtx = useContext(NotificationContext);
-
-    // useEffect(()=>{
-    //     setItems(props.items);
-    // },[props.items])
 
     const onChangeLog=(updateItem)=>{
         props.onChangeLog(updateItem);
@@ -24,7 +20,6 @@ const JournalList=(props)=>{
                 onChangeLog={onChangeLog}
             />)}
         </ul>
-
     </div>
 }
 
