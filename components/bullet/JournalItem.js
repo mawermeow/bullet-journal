@@ -1,21 +1,22 @@
+import {useEffect, useState} from "react";
 import classes from "./JournalItem.module.css";
 import {useContext} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
 
 import CheckCircle from "../icon/CheckCircle";
 import ExclamationCircle from "../icon/ExclamationCircle";
-import {useEffect, useState} from "react";
-import Flag from "../icon/Flag";
 import LightBulb from "../icon/LightBulb";
+import Flag from "../icon/Flag";
+
+
+
 
 const typeToIcon = (type) => {
     if (type === 'event') {
         return LightBulb;
-        // return ClipboardList;
     }
     if (type === 'notes') {
         return Flag;
-        // return Hashtag;
     }
     if (type === 'task') {
         return ExclamationCircle;

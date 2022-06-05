@@ -2,6 +2,10 @@ import classes from "./AddLog.module.css";
 import {useState,useContext} from "react";
 import NotificationContext from "../../store/NotificationContext";
 
+import ExclamationCircle from "../icon/ExclamationCircle";
+import LightBulb from "../icon/LightBulb";
+import Flag from "../icon/Flag";
+
 const AddLog=(props)=>{
     const [logType,setLogType] = useState('');
     const [logTitle,setLogTitle] = useState('');
@@ -47,9 +51,9 @@ const AddLog=(props)=>{
                 </div>
 
                 <div className={classes.actions}>
-                    <button onClick={()=>setLogType('task')}>任務</button>
-                    <button onClick={()=>setLogType('event')}>經驗</button>
-                    <button onClick={()=>setLogType('notes')}>註記</button>
+                    <button onClick={()=>setLogType('task')}><ExclamationCircle/> 任務</button>
+                    <button onClick={()=>setLogType('event')}><LightBulb/> 經驗</button>
+                    <button onClick={()=>setLogType('notes')}><Flag/> 註記</button>
                 </div>
             </form>
         </section>

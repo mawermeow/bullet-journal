@@ -45,8 +45,14 @@
 }
 
 .actions {
-    margin-top: var(--size-1);
+    margin-top: var(--size-2);
     text-align:center;
+}
+
+.actions svg {
+    width: var(--size-5);
+    height: var(--size-5);
+    vertical-align: sub;
 }
 
 .form button {
