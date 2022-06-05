@@ -1,23 +1,32 @@
 .bullet{
-    margin: var(--size-8) auto;
+    margin: var(--size-4) auto;
     border-radius: 6px;
     background-color: var(--color-main-100);
     width: 90%;
     max-width: 25rem;
-    padding: var(--size-1);
+    padding-bottom: var(--size-2);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    font-size: var(--size-4);
+    /*font-size: var(--size-5);*/
+
+}
+.bullet h2 {
+    margin: 0;
+    /*text-align: center;*/
+    padding: var(--size-4);
+    background:var(--color-main-800);
+    color: white;
+    border-radius: 7px 7px 0 0;
 }
 
 .bullet ul {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 0.3rem;
 }
 
 .bullet li {
     text-align: left;
-    padding: 0.5rem 0;
+    padding: var(--size-1) 0 var(--size-1);
     border-bottom: 2px solid var(--color-main-50);
 }
 
@@ -28,8 +37,4 @@
 .bullet li div {
     text-align: right;
     font-style: italic;
-}
-
-.bullet address {
-    display: inline;
 }

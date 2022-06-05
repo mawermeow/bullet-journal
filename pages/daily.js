@@ -91,38 +91,26 @@ const DailyLogPage = () => {
         return [pastDateList,futureDateList]
     };
 
-    const getPastJournal=(pastDateList)=>{
-        setPastJournal(pastDateList.map(date => {
+    const getJournal=(dateList)=>{
+        return dateList.map(date => {
             const oneDateLog = journalItems.filter(item => {
                 if (date === item.date) {
                     return item
                 }
             })
+
+            const dateTitle = `${date===d ?'Today ✩ ':''}${date}`
             return <div key={date}>
-                <h1>{date===d && `Today ✩ `}{date}</h1>
-                <JournalList items={oneDateLog} onChangeLog={onChangeLog}/>
+                <JournalList items={oneDateLog} onChangeLog={onChangeLog} dateTitle={dateTitle}/>
             </div>
-        }))
+        })
     };
 
-    const getFutureJournal=(futureDateList)=>{
-        setFutureJournal(futureDateList.map(date => {
-            const oneDateLog = journalItems.filter(item => {
-                if (date === item.date) {
-                    return item
-                }
-            })
-            return <div key={date}>
-                <h1>{date}</h1>
-                <JournalList items={oneDateLog} onChangeLog={onChangeLog}/>
-            </div>
-        }))
-    };
 
     useEffect(() => {
         const [pastDateList,futureDateList] = getJournalDate(journalItems);
-        getPastJournal(pastDateList);
-        getFutureJournal(futureDateList);
+        setPastJournal(getJournal(pastDateList));
+        setFutureJournal(getJournal(futureDateList));
     }, [journalItems]);
 
     return <div className='center'>
