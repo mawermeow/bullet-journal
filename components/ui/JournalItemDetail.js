@@ -21,7 +21,11 @@ const JournalItemDetail = () => {
 
             <h2>編輯筆記</h2>
             <div className={classes.control}>
-                <label htmlFor="title">編輯內容</label>
+                <label htmlFor="title">內容</label>
+                <input type="text" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
+            </div>
+            <div className={classes.control}>
+                <label htmlFor="title">日期</label>
                 <input type="text" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
             </div>
 

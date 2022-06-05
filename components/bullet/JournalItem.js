@@ -2,12 +2,8 @@ import classes from "./JournalItem.module.css";
 import {useContext} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
 
-import Trash from "../icon/Trash";
 import CheckCircle from "../icon/CheckCircle";
-import ClipboardList from "../icon/ClipboardList";
-import Hashtag from "../icon/Hashtag";
 import ExclamationCircle from "../icon/ExclamationCircle";
-import ArrowRight from "../icon/ArrowRight";
 import {useEffect, useState} from "react";
 import Flag from "../icon/Flag";
 import LightBulb from "../icon/LightBulb";

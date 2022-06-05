@@ -16,10 +16,8 @@ const AddLog=(props)=>{
         const newLog = {
             title:logTitle,
             type:logType,
-            year:d.getFullYear(),
-            month:d.getMonth(),
-            date:d.getDate(),
-            id:d.toLocaleString('chinese',{hour12:false})
+            id:d.toLocaleString('chinese',{hour12:false}),
+            date:d.toLocaleDateString()
         };
 
         notificationCtx.showNotification({status:'render',title:'更新中',message:'正在更新您的筆記'});

@@ -9,6 +9,7 @@ const DailyLogPage = () => {
     const [journalItems, setJournalItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const notificationCtx = useContext(NotificationContext);
+    const [allJournal,setAllJournal] = useState(<></>);
 
     useEffect(() => {
         if (isLoading) {
@@ -24,7 +25,6 @@ const DailyLogPage = () => {
                 setJournalItems(data.items)
             );
             setIsLoading(false);
-
         }
     }, [isLoading])
 
@@ -32,10 +32,42 @@ const DailyLogPage = () => {
         setJournalItems(prevState => [newLog,...prevState])
     };
 
+    const todayItems = journalItems.filter(item=>{
+        const d = new Date().toLocaleDateString();
+        if(d===new Date(item.id).toLocaleDateString()){
+            return item;
+        }
+    })
+
+    const getAllJournal=(journalItems)=>{
+        const allDateList = journalItems.map(item=>item.date);
+
+        const dateList = allDateList.filter((item, index, arr)=>{
+            return arr.indexOf(item) === index;
+        })
+
+        return dateList.map(date=>{
+            const oneDateLog = journalItems.filter(item=>{
+                if(date===item.date){
+                    return item
+                }
+            })
+            return <div key={date}>
+                <h1>{date}</h1>
+                <JournalList items={oneDateLog}/>
+            </div>
+        })
+    };
+
+    useEffect(()=>{
+        setAllJournal(getAllJournal(journalItems));
+    },[journalItems]);
+
 
     return <div className='center'>
         <AddLog onAddLog={onAddLog}/>
-        <JournalList items={journalItems}/>
+        {allJournal}
+        {/*<JournalList items={journalItems}/>*/}
     </div>
 };
 
