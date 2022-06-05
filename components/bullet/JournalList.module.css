@@ -30,6 +30,10 @@
     border-bottom: 2px solid var(--color-main-50);
 }
 
+.bullet span{
+    margin-right: var(--size-4);
+}
+
 .bullet p {
     margin: 0;
 }
