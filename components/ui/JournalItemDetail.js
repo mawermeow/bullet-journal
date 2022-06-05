@@ -6,9 +6,11 @@ const JournalItemDetail = () => {
     const detailLogCtx = useContext(JournalDetailContext);
     const {detailLog} =detailLogCtx;
     const [title, setTitle] = useState(detailLog.title);
+    const [date,setDate] = useState(detailLog.date);
 
     const saveDetailLog=()=>{
-        detailLogCtx.saveDetailLog({...detailLog,title});
+        // const formatDate = date.toString().replace('-','/');
+        detailLogCtx.saveDetailLog({...detailLog,title,date});
     };
 
     const deleteDetailLog=()=>{
@@ -25,8 +27,8 @@ const JournalItemDetail = () => {
                 <input type="text" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
             </div>
             <div className={classes.control}>
-                <label htmlFor="title">日期</label>
-                <input type="text" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
+                <label htmlFor="date">轉移日期</label>
+                <input type="date" id="date" value={date} onChange={event => setDate(event.target.value)}/>
             </div>
 
             <div className={classes.detailModal__actions}>
