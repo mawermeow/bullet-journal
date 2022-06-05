@@ -8,8 +8,13 @@ const JournalItemDetail = () => {
     const [title, setTitle] = useState(detailLog.title);
     const [date, setDate] = useState(detailLog.date);
 
+    const formatDate =(dateStr)=> {
+        return  dateStr.replace(/-/g, '/')
+    }
+
     const saveDetailLog = () => {
-        detailLogCtx.saveDetailLog({...detailLog, title, date});
+        const newDate = formatDate(date);
+        detailLogCtx.saveDetailLog({...detailLog, title, date:newDate});
     };
 
     const deleteDetailLog = () => {

@@ -13,7 +13,12 @@ const DailyLogPage = () => {
     const [futureJournal, setFutureJournal] = useState();
     const [showFutureLog, setShowFutureLog] = useState(false);
     const [showTaskLog, setShowTaskLog] = useState(false);
-    const d = new Date().toISOString().slice(0, 10);
+
+    const getDate=()=>{
+        const d = new Date();
+        return d.getFullYear()+'/'+(d.getMonth()+1).toString().padStart(2,'0')+'/'+d.getDate().toString().padStart(2,'0');
+    };
+    const d = getDate();
 
     useEffect(() => {
         if (isLoading) {
