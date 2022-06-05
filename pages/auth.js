@@ -19,7 +19,7 @@ const AuthPage=()=>{
     }, [router]);
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <p className="center">Loading...</p>;
     }
 
     return <>

@@ -32,12 +32,44 @@ const DailyLogPage = () => {
         setJournalItems(prevState => [newLog,...prevState])
     };
 
-    const todayItems = journalItems.filter(item=>{
-        const d = new Date().toLocaleDateString();
-        if(d===new Date(item.id).toLocaleDateString()){
-            return item;
+    const updateJournal=(updateItems)=>{
+        notificationCtx.showNotification({status:'render',title:'更新中',message:'正在更新您的筆記'});
+        fetch('/api/user/change-journal',{
+            method:'PATCH',
+            body:JSON.stringify(updateItems),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }).then(res=>{
+            if(res.ok){
+                setJournalItems(updateItems);
+                notificationCtx.showNotification({status:'success',title:'更新成功',message:'筆記修改完成'});
+            }else{
+                notificationCtx.showNotification({status:'error',title:'錯誤',message:'筆記修改失敗，請重新嘗試'});
+            }
+        })
+    };
+
+    const onChangeLog=(updateItem)=>{
+        let updateItems;
+
+        if(updateItem.type==='DELETE'){
+            updateItems = journalItems.filter(item=>{
+                if(item.id!==updateItem.id){
+                    return item;
+                }
+            })
+        }else{
+            updateItems = journalItems.map(item=>{
+                if(item.id===updateItem.id){
+                    return updateItem
+                }
+                return item
+            })
+
         }
-    })
+        updateJournal(updateItems)
+    }
 
     const getAllJournal=(journalItems)=>{
         const allDateList = journalItems.map(item=>item.date);
@@ -54,7 +86,7 @@ const DailyLogPage = () => {
             })
             return <div key={date}>
                 <h1>{date}</h1>
-                <JournalList items={oneDateLog}/>
+                <JournalList items={oneDateLog} onChangeLog={onChangeLog}/>
             </div>
         })
     };
