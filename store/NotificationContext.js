@@ -2,10 +2,8 @@ import {createContext, useEffect, useState} from "react";
 
 const NotificationContext = createContext({
     notification: null,
-    showNotification: (notification) => {
-    },
-    hideNotification: () => {
-    }
+    showNotification: (notification) => {},
+    hideNotification: () => {}
 });
 
 export const NotificationContextProvider = (props) => {

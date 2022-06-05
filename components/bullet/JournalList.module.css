@@ -19,8 +19,6 @@
     text-align: left;
     padding: 0.5rem 0;
     border-bottom: 2px solid var(--color-main-50);
-    list-style-type:none;
- /*　　list-style-image: url();*/
 }
 
 .bullet p {

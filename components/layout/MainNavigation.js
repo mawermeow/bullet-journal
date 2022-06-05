@@ -10,8 +10,8 @@ const MainNavigation = () => {
     const monthlyLog = `/${d.getFullYear()}/${d.getMonth()}`;
     const dailyLog = `/${d.getFullYear()}/${d.getMonth()}/${d.getDate()}`;
 
-    function logoutHandler() {
-        signOut();
+    const logoutHandler=async ()=> {
+        await signOut();
     }
 
     return <header className={classes.header}>

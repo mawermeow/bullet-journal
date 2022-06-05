@@ -49,8 +49,8 @@ const AddLog=(props)=>{
                 </div>
 
                 <div className={classes.actions}>
-                    <button onClick={()=>setLogType('event')}>事件</button>
                     <button onClick={()=>setLogType('task')}>任務</button>
+                    <button onClick={()=>setLogType('event')}>經驗</button>
                     <button onClick={()=>setLogType('notes')}>註解</button>
                 </div>
             </form>

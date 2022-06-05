@@ -1,0 +1,52 @@
+.detailModal {
+    position: fixed;
+    top: 30vh;
+    left: calc(50% - 15rem);
+    width: 30rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    z-index: 100;
+    border-radius: 7px;
+}
+
+.detailModal h2 {
+    margin: 0;
+    padding: 1rem;
+    background:var(--color-main-800);
+    color: white;
+    border-radius: 7px 7px 0 0;
+}
+
+.detailModal p {
+    padding: 1rem;
+}
+
+.detailModal__actions {
+    margin-top: var(--size-1);
+    margin-bottom: var(--size-3);
+    text-align:center;
+    /*display: flex;*/
+    /*justify-content: flex-end;*/
+    /*padding: 0 0.5rem;*/
+}
+
+.detailModal__actions button {
+    font: inherit;
+    background-color: var(--color-main-700);
+    border: 1px solid white;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+}

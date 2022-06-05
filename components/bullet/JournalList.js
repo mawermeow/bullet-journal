@@ -39,6 +39,7 @@ const JournalList=(props)=>{
                 onChangeLog={onChangeLog}
             />)}
         </ul>
+
     </div>
 }
 

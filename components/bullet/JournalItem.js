@@ -1,4 +1,5 @@
 import classes from "./JournalItem.module.css";
+import JournalItemDetail from "../ui/JournalItemDetail";
 
 import Trash from "../icon/Trash";
 import CheckCircle from "../icon/CheckCircle";
@@ -7,13 +8,17 @@ import Hashtag from "../icon/Hashtag";
 import ExclamationCircle from "../icon/ExclamationCircle";
 import ArrowRight from "../icon/ArrowRight";
 import {useEffect, useState} from "react";
+import Flag from "../icon/Flag";
+import LightBulb from "../icon/LightBulb";
 
 const typeToIcon = (type) => {
     if (type === 'event') {
-        return ClipboardList;
+        return LightBulb;
+        // return ClipboardList;
     }
     if (type === 'notes') {
-        return Hashtag;
+        return Flag;
+        // return Hashtag;
     }
     if (type === 'task') {
         return ExclamationCircle;
