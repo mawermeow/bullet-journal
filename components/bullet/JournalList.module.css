@@ -3,7 +3,7 @@
     border-radius: 6px;
     background-color: var(--color-main-100);
     width: 90%;
-    max-width: 25rem;
+    max-width: var(--size-main-a1);
     padding-bottom: var(--size-2);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     /*font-size: var(--size-5);*/
@@ -45,4 +45,9 @@
 .bullet li div {
     text-align: right;
     font-style: italic;
+}
+
+.future h2{
+    /*background:var(--color-secondary-700);*/
+    background:var(--color-error-600);
 }

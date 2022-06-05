@@ -1,6 +1,6 @@
 .logo {
     text-transform: uppercase;
-    font-size: var(--size-5);
+    font-size: var(--size-6);
     font-weight: bold;
     font-family: 'Oswald', sans-serif;
     color: var(--color-main-50);
@@ -9,5 +9,6 @@
 @media (min-width: 768px) {
     .logo {
         font-size: var(--size-8);
+        white-space: nowrap;
     }
 }

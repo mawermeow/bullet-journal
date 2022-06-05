@@ -3,7 +3,7 @@
     border-radius: 6px;
     background-color: var(--color-main-100);
     width: 90%;
-    max-width: 25rem;
+    max-width: var(--size-main-a1);
     padding: var(--size-4);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     font-size: var(--size-4);
@@ -64,18 +64,12 @@
     border-radius: 4px;
     color: var(--color-secondary-50);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    width: 33%;
+    width: 32%;
     display:inline-block;
+    margin-right: var(--size-1);
 }
 
 .form button:hover {
     background-color: var(--color-secondary-500);
     border-color: var(--color-secondary-500);
-}
-
-@media (min-width: 768px) {
-    .log-item h1 {
-        font-size: var(--size-16);
-        text-align: center;
-    }
 }

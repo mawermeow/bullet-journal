@@ -1,88 +1,120 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto&family=Source+Sans+Pro:wght@300&display=swap');
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  --color-main-50: hsl(0, 60%, 96%);
-  --color-main-100: hsl(2, 61%, 92%);
-  --color-main-200: hsl(2, 61%, 88%);
-  --color-main-300: hsl(2, 61%, 84%);
-  --color-main-400: hsl(2, 61%, 80%);
-  --color-main-500: hsl(2, 61%, 76%);
-  --color-main-600: hsl(2, 61%, 72%);
-  --color-main-700: hsl(2, 61%, 65%);
-  --color-main-800: hsl(2, 61%, 64%);
-  --color-main-900: hsl(2, 61%, 60%);
+    --color-main-50: hsl(0, 60%, 96%);
+    --color-main-100: hsl(2, 61%, 92%);
+    --color-main-200: hsl(2, 61%, 88%);
+    --color-main-300: hsl(2, 61%, 84%);
+    --color-main-400: hsl(2, 61%, 80%);
+    --color-main-500: hsl(2, 61%, 76%);
+    --color-main-600: hsl(2, 61%, 72%);
+    --color-main-700: hsl(2, 61%, 65%);
+    --color-main-800: hsl(2, 61%, 64%);
+    --color-main-900: hsl(2, 61%, 60%);
 
-  --color-secondary-50: #EBF9FF;
-  --color-secondary-100: #d6f3ff;
-  --color-secondary-200: #99e2ff;
-  --color-secondary-300: #5cd1ff;
-  --color-secondary-400: #1fbfff;
-  --color-secondary-500: #00aff5;
-  --color-secondary-600: #0092cc;
-  --color-secondary-700: #0075a2;
+    --color-secondary-50: #EBF9FF;
+    --color-secondary-100: #d6f3ff;
+    --color-secondary-200: #99e2ff;
+    --color-secondary-300: #5cd1ff;
+    --color-secondary-400: #1fbfff;
+    --color-secondary-500: #00aff5;
+    --color-secondary-600: #0092cc;
+    --color-secondary-700: #0075a2;
 
-  --color-success-100: #F1F9F4;
-  --color-success-500: #499F68;
 
-  --color-error-100: #333333;
-  --color-error-500: #FFD97D;
+    --color-success-100: #F1F9F4;
+    --color-success-500: #499F68;
 
-  --size-1: 0.25rem;
-  --size-2: 0.5rem;
-  --size-3: 0.75rem;
-  --size-4: 1rem;
-  --size-5: 1.25rem;
-  --size-6: 1.5rem;
-  --size-8: 2rem;
-  --size-16: 4rem;
-  --size-20: 5rem;
-  --size-40: 10rem;
+    --color-error-100: #333333;
+    --color-error-400: #ffe3b4;
+    --color-error-500: #FFD97D;
+    --color-error-600: #ffba00;
 
-  margin: 0;
-  background-color: var(--color-main-400);
-  color: #986E5E;
-  font-family: 'Roboto', sans-serif;
+    --size-1: 0.25rem;
+    --size-2: 0.5rem;
+    --size-3: 0.75rem;
+    --size-4: 1rem;
+    --size-5: 1.25rem;
+    --size-6: 1.5rem;
+    --size-8: 2rem;
+    --size-16: 4rem;
+    --size-20: 5rem;
+    --size-40: 10rem;
+    --size-main-a1: 25rem;
+    --size-main-a2: 12.3rem;
+
+    margin: 0;
+    background-color: var(--color-main-400);
+    color: #986E5E;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Oswald', 'Roboto', sans-serif;
+    font-family: 'Oswald', 'Roboto', sans-serif;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 button {
-  font: inherit;
-  cursor: pointer;
+    font: inherit;
+    cursor: pointer;
 }
 
-.center{
-  text-align: center;
+.center {
+    text-align: center;
 }
 
+.colorButton{
+    margin: auto;
+    max-width: var(--size-main-a1);
+}
 .colorButton button {
-  font: inherit;
-  cursor: pointer;
-  background-color: var(--color-main-700);
-  border: 1px solid var(--color-main-700);
-  padding: var(--size-1) var(--size-1);
-  border-radius: 4px;
-  color: var(--color-main-50);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 16rem;
-  display:inline-block;
+    font: inherit;
+    cursor: pointer;
+    background-color: var(--color-main-700);
+    border: 1px solid var(--color-main-700);
+    padding: var(--size-1) var(--size-1);
+    border-radius: 4px;
+    color: var(--color-main-50);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    width: 49.8%;
+    display: inline-block;
+    margin-right: 0.1%;
+    margin-left: 0.1%;
 }
 
 .colorButton button:hover {
-  color: var(--color-main-800);
-  background-color: var(--color-main-50);
-  border-color: var(--color-main-50);
+    color: var(--color-main-800);
+    background-color: var(--color-main-50);
+    border-color: var(--color-main-50);
+}
+
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    body {
+        --size-main-a1: 35rem;
+        --size-main-a2: 17.3rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    body {
+        --size-main-a1: 50rem;
+        --size-main-a2: 24.8rem;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+    body {
+        --size-main-a1: 30rem;
+        --size-main-a2: 14.8rem;
+    }
 }

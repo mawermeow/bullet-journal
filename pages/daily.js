@@ -11,7 +11,8 @@ const DailyLogPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [pastJournal, setPastJournal] = useState();
     const [futureJournal, setFutureJournal] = useState();
-    const [showFutureLog,setShowFutureLog] = useState(false);
+    const [showFutureLog, setShowFutureLog] = useState(false);
+    const [showTaskLog, setShowTaskLog] = useState(false);
     const d = new Date().toISOString().slice(0, 10);
 
     useEffect(() => {
@@ -80,45 +81,58 @@ const DailyLogPage = () => {
             return arr.indexOf(item) === index;
         }).sort().reverse();
 
-        let futureDateList=[];
-        const pastDateList = dateList.filter(dateItem=>{
-            if(d >= dateItem){
+        let futureDateList = [];
+        const pastDateList = dateList.filter(dateItem => {
+            if (d >= dateItem) {
                 return dateItem
-            }else{
+            } else {
                 futureDateList.push(dateItem);
             }
         })
-        return [pastDateList,futureDateList]
+        return [pastDateList, futureDateList]
     };
 
-    const getJournal=(dateList)=>{
+    const getJournal = (dateList) => {
         return dateList.map(date => {
-            const oneDateLog = journalItems.filter(item => {
+            let oneDateLogs = journalItems.filter(item => {
                 if (date === item.date) {
                     return item
                 }
             })
 
-            const dateTitle = `${date===d ?'Today ✩ ':''}${date}`
-            return <div key={date}>
-                <JournalList items={oneDateLog} onChangeLog={onChangeLog} dateTitle={dateTitle}/>
-            </div>
+            if(showTaskLog){
+                oneDateLogs = oneDateLogs.filter(log=>{
+                    if(log.type==='task'){
+                        return log
+                    }
+                })
+            }
+
+            const dateTitle = `${date === d ? 'Today ✩ ' :''}${date}`
+            return <>
+                {oneDateLogs.length>0 && <div key={date}>
+                <JournalList items={oneDateLogs} onChangeLog={onChangeLog} dateTitle={dateTitle}/>
+            </div>}
+            </>
         })
     };
 
 
     useEffect(() => {
-        const [pastDateList,futureDateList] = getJournalDate(journalItems);
+        const [pastDateList, futureDateList] = getJournalDate(journalItems);
         setPastJournal(getJournal(pastDateList));
         setFutureJournal(getJournal(futureDateList));
-    }, [journalItems]);
+    }, [journalItems,showTaskLog]);
 
     return <div className='center'>
         <AddLog onAddLog={onAddLog}/>
         <div className="colorButton">
-        <button onClick={()=>setShowFutureLog(prevState => !prevState)}>
-            {showFutureLog?'隱藏':'顯示'}未來筆記
-        </button>
+            <button onClick={() => setShowFutureLog(prevState => !prevState)}>
+                {showFutureLog ? '隱藏' : '顯示'}未來筆記
+            </button>
+            <button onClick={() => setShowTaskLog(prevState => !prevState)}>
+                {showTaskLog ? '顯示全部種類' : '顯示待辦任務'}
+            </button>
         </div>
         {showFutureLog && futureJournal}
         {pastJournal}
