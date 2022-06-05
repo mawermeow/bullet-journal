@@ -22,16 +22,17 @@ export const handler = async (req, res) => {
         client.close();
         return;
     }
+
     if (req.method === 'PATCH') {
-        const newLog = [req.body, ...user.journal];
+        const newLogs = req.body;
 
         const result = await usersCollection.updateOne(
             {email: userEmail},
-            {$set: {journal: newLog}}
+            {$set: {journal: newLogs}}
         );
 
         client.close();
-        res.status(200).json({message: '成功新增任務！', log: newLog});
+        res.status(200).json({message: '成功修改任務！', log: newLogs});
         return;
     }
 

@@ -1,11 +1,14 @@
 import classes from "./AddLog.module.css";
-import {useState} from "react";
+import {useState,useContext} from "react";
+import NotificationContext from "../../store/NotificationContext";
 
-const AddLog=()=>{
+const AddLog=(props)=>{
     const [logType,setLogType] = useState('');
     const [logTitle,setLogTitle] = useState('');
 
-    const submitHandler=async (event)=>{
+    const notificationCtx = useContext(NotificationContext);
+
+    const addLogHandler=async (event)=>{
         event.preventDefault();
 
         const d = new Date();
@@ -15,9 +18,11 @@ const AddLog=()=>{
             type:logType,
             year:d.getFullYear(),
             month:d.getMonth(),
-            date:d.getDate()
+            date:d.getDate(),
+            id:d.toLocaleString('chinese',{hour12:false})
         };
 
+        notificationCtx.showNotification({status:'render',title:'上傳中',message:'正在新增您的筆記'});
         const result = await fetch('api/user/journal',{
             method:'PATCH',
             body:JSON.stringify(newLog),
@@ -26,13 +31,17 @@ const AddLog=()=>{
             }
         })
         if(result.ok){
-
+            notificationCtx.showNotification({status:'success',title:'成功',message:'筆記新增完成'});
+            props.onAddLog(newLog);
+            setLogTitle('')
+        }else{
+            notificationCtx.showNotification({status:'error',title:'錯誤',message:'筆記新增失敗'});
         }
     };
 
     return (
         <section className={classes['log-item']}>
-            <form className={classes.form} onSubmit={submitHandler}>
+            <form className={classes.form} onSubmit={addLogHandler}>
                 <div className={classes.control}>
                     <input type="text" value={logTitle}
                            onChange={(event)=>{setLogTitle(event.target.value)}}

@@ -61,6 +61,7 @@ function AuthForm() {
                 notificationCtx.showNotification({status:'render',title:'註冊中',message:'正在註冊您的帳號'});
                 const result = await createUser(enteredEmail, enteredPassword);
                 notificationCtx.showNotification({status:'success',title:'註冊成功',message:'帳號註冊完成！'});
+                setIsLogin(true);
             } catch (error) {
                 notificationCtx.showNotification({status:'error',title:'註冊失敗',message:error.message});
             }

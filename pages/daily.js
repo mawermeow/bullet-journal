@@ -1,17 +1,29 @@
 import {getSession} from "next-auth/client";
 import AddLog from "../components/bullet/AddLog";
+import JournalList from "../components/bullet/JournalList";
+import {useEffect, useState} from "react";
 
-const DailyLogPage = (props) => {
+const DailyLogPage = () => {
+    const [journalItems, setJournalItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (isLoading) {
+            fetch('/api/user/journal').then(res => res.json()).then(data =>
+                setJournalItems(data.items)
+            );
+            setIsLoading(false);
+        }
+    }, [isLoading])
+
+    const onAddLog=(newLog)=>{
+        setJournalItems(prevState => [newLog,...prevState])
+    };
+
+
     return <div className='center'>
-        <input type="text"/>
-        <div>事件｜任務｜註解</div>
-        <p>點了就會新增今天這個時間的項目，一直往下加</p>
-        <AddLog/>
-        <hr/>
-        <ul>
-            <li>任務：-</li>
-            <li>註解 > </li>
-        </ul>
+        <AddLog onAddLog={onAddLog}/>
+        <JournalList items={journalItems}/>
     </div>
 };
 
@@ -27,8 +39,9 @@ export async function getServerSideProps(context) {
         };
     }
     return {
-        props: {session},
+        props: {session}
     };
+
 }
 
 export default DailyLogPage;

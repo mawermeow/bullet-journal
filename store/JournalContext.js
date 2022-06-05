@@ -5,7 +5,7 @@ const JournalContext = React.createContext({
     addLog:(newLog)=>{}
 });
 
-const JournalContextProvider = props =>{
+export const JournalContextProvider = props =>{
     const [journal,setJournal] = useState([]);
 
     const addLog=(newLog)=>{
