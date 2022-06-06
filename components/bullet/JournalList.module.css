@@ -11,7 +11,7 @@
 }
 .bullet h2 {
     margin: 0;
-    /*text-align: center;*/
+    text-align: center;
     padding: var(--size-4);
     background:var(--color-main-800);
     color: white;

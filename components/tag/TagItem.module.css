@@ -2,6 +2,7 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     background-color: var(--color-main-800);
     text-align: center;
+    border-radius: 7px;
 }
 
 .tag a {

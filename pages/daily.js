@@ -3,7 +3,6 @@ import AddLog from "../components/bullet/AddLog";
 import JournalList from "../components/bullet/JournalList";
 import {useEffect, useState} from "react";
 import {useContext} from "react";
-import NotificationContext from "../store/NotificationContext";
 import JournalDetailContext from "../store/JournalDetailContext";
 import useJournal from "../hooks/useJournal";
 
@@ -16,20 +15,13 @@ const DailyLogPage = () => {
     useJournal();
     const [pastJournal, setPastJournal] = useState();
     const [futureJournal, setFutureJournal] = useState();
-
-    const [isLoading, setIsLoading] = useState(true);
     const [showFutureLog, setShowFutureLog] = useState(false);
     const [showTaskLog, setShowTaskLog] = useState(false);
 
     const d = getDate();
 
-    const {showNotification} = useContext(NotificationContext);
-    const {logs, saveLogs} = useContext(JournalDetailContext);
+    const {logs} = useContext(JournalDetailContext);
 
-
-    const onAddLog = (newLog) => {
-        saveLogs(prevState => [newLog, ...prevState])
-    };
 
     const getJournal = (dateList) => {
         return dateList.map(date => {
@@ -45,7 +37,7 @@ const DailyLogPage = () => {
                     }
                 })
             }
-            const dateTitle = `${date === d ? 'Today ✩ ' : ''}${date}`
+            const dateTitle = `${date === d ? 'Today ✩ ' :date===''?'很久以後': ''}${date}`
             return <div key={date}>
                 {oneDateLogs.length > 0 &&
                     <JournalList items={oneDateLogs} dateTitle={dateTitle}/>
@@ -64,7 +56,7 @@ const DailyLogPage = () => {
             return arr.indexOf(item) === index;
         }).sort().reverse();
 
-        let futureDateList = [];
+        let futureDateList = [''];
         const pastDateList = dateList.filter(dateItem => {
             if (d >= dateItem) {
                 return dateItem
@@ -85,13 +77,13 @@ const DailyLogPage = () => {
     }, [logs, showTaskLog]);
 
     return <div className='center'>
-        <AddLog onAddLog={onAddLog}/>
+        <AddLog/>
         <div className="colorButton">
             <button onClick={() => setShowFutureLog(prevState => !prevState)}>
                 {showFutureLog ? '隱藏' : '顯示'}未來筆記
             </button>
             <button onClick={() => setShowTaskLog(prevState => !prevState)}>
-                {showTaskLog ? '顯示全部種類' : '顯示待辦任務'}
+                {showTaskLog ? '所有筆記項目' : '待辦事項清單'}
             </button>
         </div>
         {showFutureLog && futureJournal}

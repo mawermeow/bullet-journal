@@ -5,18 +5,20 @@ import NotificationContext from "../../store/NotificationContext";
 import ExclamationCircle from "../icon/ExclamationCircle";
 import LightBulb from "../icon/LightBulb";
 import Flag from "../icon/Flag";
+import JournalDetailContext from "../../store/JournalDetailContext";
 
 const AddLog=(props)=>{
     const [logType,setLogType] = useState('');
     const [logTitle,setLogTitle] = useState('');
-
-    const notificationCtx = useContext(NotificationContext);
+    const {logs, saveLogs} = useContext(JournalDetailContext);
+    const {showNotification} = useContext(NotificationContext);
+    const {tagName} = props;
 
     const addLogHandler=async (event)=>{
         event.preventDefault();
 
         if(logTitle.trim().length===0){
-            notificationCtx.showNotification({status:'error',title:'錯誤',message:'筆記不得為空白'});
+            showNotification({status:'error',title:'錯誤',message:'筆記不得為空白'});
             return;
         }
 
@@ -28,11 +30,11 @@ const AddLog=(props)=>{
             type:logType,
             id:d.toLocaleString('chinese',{hour12:false}),
             date,
-            tag:''
+            tag:tagName||'',
         };
 
-        notificationCtx.showNotification({status:'render',title:'更新中',message:'正在更新您的筆記'});
-        const result = await fetch('api/user/journal',{
+        showNotification({status:'render',title:'更新中',message:'正在更新您的筆記'});
+        const result = await fetch('/api/user/journal',{
             method:'PATCH',
             body:JSON.stringify(newLog),
             headers:{
@@ -40,11 +42,11 @@ const AddLog=(props)=>{
             }
         })
         if(result.ok){
-            notificationCtx.showNotification({status:'success',title:'成功',message:'筆記更新完成'});
-            props.onAddLog(newLog);
+            showNotification({status:'success',title:'成功',message:'筆記更新完成'});
+            saveLogs(prevState => [newLog, ...prevState]);
             setLogTitle('')
         }else{
-            notificationCtx.showNotification({status:'error',title:'錯誤',message:'筆記新增失敗'});
+            showNotification({status:'error',title:'錯誤',message:'筆記新增失敗'});
         }
     };
 

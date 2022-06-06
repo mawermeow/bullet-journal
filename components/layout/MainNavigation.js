@@ -2,6 +2,8 @@ import Logo from "./Logo";
 import Link from "next/link";
 import {useSession, signOut} from 'next-auth/client';
 import classes from "./MainNavigation.module.css";
+import Hashtag from "../icon/Hashtag";
+import PencilAlt from "../icon/PencilAlt";
 
 const MainNavigation = () => {
     const [session, loading] = useSession();
@@ -23,9 +25,9 @@ const MainNavigation = () => {
         <nav>
             <ul>{session &&
                 <>
-                    <li><Link href="/daily">日</Link></li>
+                    <li><Link href="/daily"><a className='button'><PencilAlt/></a></Link></li>
                     <li><Link href={monthlyLog}>月</Link></li>
-                    <li><Link href="/tags">客</Link></li>
+                    <li><Link href="/tags"><a className='button'><Hashtag/></a></Link></li>
                     <li>
                         <button onClick={logoutHandler}>登出</button>
                     </li>
