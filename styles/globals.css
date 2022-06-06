@@ -34,6 +34,8 @@ body {
     --color-error-500: #FFD97D;
     --color-error-600: #ffba00;
 
+    --color-direct-100: white;
+
     --size-1: 0.25rem;
     --size-2: 0.5rem;
     --size-3: 0.75rem;
