@@ -1,7 +1,7 @@
-import JournalList from "./JournalList";
+import LogList from "./LogList";
 import localDate from "../../lib/local-date";
 
-const JournalLog = (props) => {
+const LogLists = (props) => {
     const {dateList, logs, showTaskLog} = props;
 
     if (!showTaskLog) {
@@ -15,7 +15,7 @@ const JournalLog = (props) => {
 
                 const dateTitle = `${date === localDate ? 'Today ✩ ' : date === '' ? '很久以後' : ''}${date}`;
 
-                return <JournalList key={dateTitle} items={oneDateLogs} dateTitle={dateTitle}/>
+                return <LogList key={dateTitle} items={oneDateLogs} dateTitle={dateTitle}/>
             }
         )
     }
@@ -30,9 +30,9 @@ const JournalLog = (props) => {
         const dateTitle = `${date === localDate ? 'Today ✩ ' :date===''?'很久以後': ''}${date}`;
 
         if(oneDateLogs.length>0){
-            return <JournalList key={dateTitle} items={oneDateLogs} dateTitle={dateTitle}/>
+            return <LogList key={dateTitle} items={oneDateLogs} dateTitle={dateTitle}/>
         }
     });
 };
 
-export default JournalLog;
+export default LogLists;

@@ -2,7 +2,7 @@ import MainNavigation from "./MainNavigation";
 import NotificationContext from "../../store/NotificationContext";
 import Notification from "../ui/Notification";
 import JournalDetailContext from "../../store/JournalDetailContext";
-import JournalItemDetail from "../ui/JournalItemDetail";
+import LogItemEditor from "../editor/LogItemEditor";
 import {useContext} from "react";
 
 const Layout=(props)=>{
@@ -15,7 +15,7 @@ const Layout=(props)=>{
     return <>
         <MainNavigation/>
         <main>{props.children}</main>
-        {detailLog && <JournalItemDetail/>}
+        {detailLog && <LogItemEditor/>}
         {notification && <Notification
             title={notification.title}
             message={notification.message}

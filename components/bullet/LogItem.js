@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import classes from "./JournalItem.module.css";
+import classes from "./LogItem.module.css";
 import {useContext} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
 
@@ -26,7 +26,7 @@ const typeToIcon = (type) => {
     }
 };
 
-const JournalItem = (props) => {
+const LogItem = (props) => {
     const detailLogCtx = useContext(JournalDetailContext);
     const {changedLog,clearChangedLog}= detailLogCtx;
     const {item,tagMode} = props;
@@ -65,4 +65,4 @@ const JournalItem = (props) => {
           <span onClick={clickTitle}>{item.title}</span>
     </li>;
 };
-export default JournalItem;
+export default LogItem;

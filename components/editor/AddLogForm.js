@@ -1,4 +1,4 @@
-import classes from "./AddLog.module.css";
+import classes from "./AddLogForm.module.css";
 import {useState,useContext} from "react";
 import NotificationContext from "../../store/NotificationContext";
 
@@ -7,7 +7,7 @@ import LightBulb from "../icon/LightBulb";
 import Flag from "../icon/Flag";
 import JournalDetailContext from "../../store/JournalDetailContext";
 
-const AddLog=(props)=>{
+const AddLogForm=(props)=>{
     const [logType,setLogType] = useState('');
     const [logTitle,setLogTitle] = useState('');
     const {logs, saveLogs} = useContext(JournalDetailContext);
@@ -68,4 +68,4 @@ const AddLog=(props)=>{
         </section>
     );
 };
-export default AddLog;
+export default AddLogForm;

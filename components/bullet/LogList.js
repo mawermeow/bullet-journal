@@ -1,10 +1,10 @@
-import classes from "./JournalList.module.css";
-import JournalItem from "./JournalItem";
+import classes from "./LogList.module.css";
+import LogItem from "./LogItem";
 import {useContext, useEffect} from "react";
 import NotificationContext from "../../store/NotificationContext";
 import JournalDetailContext from "../../store/JournalDetailContext";
 
-const JournalList = (props) => {
+const LogList = (props) => {
 
     const {items, dateTitle} = props;
     const {showNotification} = useContext(NotificationContext);
@@ -50,21 +50,18 @@ const JournalList = (props) => {
 
     const isToday = dateTitle.includes('✩');
 
-    const isTagMode = dateTitle.includes('★');
-
     return <div className={isToday ? classes.today : ''}>
         <div className={classes.bullet}>
             <h2>{dateTitle}</h2>
             <ul>
-                {items && items.length > 0 && items.map(item => <JournalItem
+                {items && items.length > 0 && items.map(item => <LogItem
                     key={item.id}
                     item={item}
                     onChangeLog={onChangeLog}
-                    tagMode={isTagMode}
                 />)}
             </ul>
         </div>
     </div>
 }
 
-export default JournalList;
+export default LogList;

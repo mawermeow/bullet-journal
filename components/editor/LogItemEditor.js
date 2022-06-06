@@ -1,4 +1,4 @@
-import classes from "./JournalItemDetail.module.css";
+import classes from "./LogItemEditor.module.css";
 import {useContext, useState} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
 import Calendar from "../icon/Calendar";
@@ -17,7 +17,7 @@ const unFormatDate = (dateStr) => {
     return dateStr.replace(/\//g, '-')
 }
 
-const JournalItemDetail = () => {
+const LogItemEditor = () => {
     const detailLogCtx = useContext(JournalDetailContext);
     const {detailLog} = detailLogCtx;
     const [title, setTitle] = useState(detailLog.title);
@@ -72,4 +72,4 @@ const JournalItemDetail = () => {
         </div>
     </>
 };
-export default JournalItemDetail;
+export default LogItemEditor;
