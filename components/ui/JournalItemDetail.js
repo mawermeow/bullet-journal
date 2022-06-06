@@ -2,19 +2,27 @@ import classes from "./JournalItemDetail.module.css";
 import {useContext, useState} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
 
+const formatDate = (dateStr) => {
+    return dateStr.replace(/-/g, '/')
+}
+
+const unFormatDate = (dateStr) => {
+    return dateStr.replace(/\//g, '-')
+}
+
 const JournalItemDetail = () => {
     const detailLogCtx = useContext(JournalDetailContext);
     const {detailLog} = detailLogCtx;
     const [title, setTitle] = useState(detailLog.title);
-    const [date, setDate] = useState(detailLog.date);
+    const [tag, setTag] = useState(detailLog.tag);
 
-    const formatDate =(dateStr)=> {
-        return  dateStr.replace(/-/g, '/')
-    }
+    const [date, setDate] = useState(unFormatDate(detailLog.date));
 
     const saveDetailLog = () => {
         const newDate = formatDate(date);
-        detailLogCtx.saveDetailLog({...detailLog, title, date:newDate});
+        const formattedTag = tag.replace(/\s/g, '').replace(/#＃/g, '');
+        console.log(formattedTag)
+        detailLogCtx.saveDetailLog({...detailLog, title, date: newDate, tag:formattedTag});
     };
 
     const deleteDetailLog = () => {
@@ -30,10 +38,18 @@ const JournalItemDetail = () => {
                 <label htmlFor="title">內容</label>
                 <textarea rows="3" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
             </div>
-            <div className={classes.control}>
-                <label htmlFor="date">轉移日期</label>
-                <input type="date" id="date" value={date} onChange={event => setDate(event.target.value)}/>
+
+            <div className={classes.row}>
+                <div className={classes.control}>
+                    <label htmlFor="date">轉移日期</label>
+                    <input type="date" id="date" value={date} onChange={event => setDate(event.target.value)}/>
+                </div>
+                <div className={classes.control}>
+                    <label htmlFor="date">標籤</label>
+                    <input type="text" id="tag" value={tag} onChange={event => setTag(event.target.value)}/>
+                </div>
             </div>
+
 
             <div className={classes.detailModal__actions}>
                 <button type="button" onClick={saveDetailLog}>

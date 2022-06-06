@@ -44,10 +44,10 @@
 
 .bullet li div {
     text-align: right;
-    font-style: italic;
+    /*font-style: italic;*/
 }
 
-.future h2{
+.today h2{
     /*background:var(--color-secondary-700);*/
     background:var(--color-error-600);
 }

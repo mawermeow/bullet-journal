@@ -28,8 +28,8 @@ const typeToIcon = (type) => {
 
 const JournalItem = (props) => {
     const detailLogCtx = useContext(JournalDetailContext);
-    const {detailLog,changedLog,clearChangedLog}= detailLogCtx;
-    const {item} = props;
+    const {changedLog,clearChangedLog}= detailLogCtx;
+    const {item,tagMode} = props;
     const [iconType,setIconType]=useState(item.type);
     const Icon = typeToIcon(iconType);
 
@@ -61,6 +61,7 @@ const JournalItem = (props) => {
           <span className={classes.icon} onClick={clickIcon}>
             <Icon/>
           </span>
+        {tagMode && <span>{item.date}</span>}
           <span onClick={clickTitle}>{item.title}</span>
     </li>;
 };

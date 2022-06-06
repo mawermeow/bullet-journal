@@ -1,0 +1,19 @@
+.tag {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-main-800);
+    text-align: center;
+}
+
+.tag a {
+    color: var(--color-main-100);
+}
+
+.content {
+    padding: var(--size-4);
+}
+
+.content h3 {
+    margin: var(--size-2) 0;
+    font-size: var(--size-6);
+    color: var(--color-main-50);
+}

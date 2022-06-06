@@ -27,8 +27,8 @@ const AddLog=(props)=>{
             title:logTitle,
             type:logType,
             id:d.toLocaleString('chinese',{hour12:false}),
-            date
-            // date:d.toISOString().slice(0, 10)
+            date,
+            tag:''
         };
 
         notificationCtx.showNotification({status:'render',title:'更新中',message:'正在更新您的筆記'});

@@ -25,7 +25,7 @@ const MainNavigation = () => {
                 <>
                     <li><Link href="/daily">日</Link></li>
                     <li><Link href={monthlyLog}>月</Link></li>
-                    <li><Link href={yearlyLog}>年</Link></li>
+                    <li><Link href="/tags">客</Link></li>
                     <li>
                         <button onClick={logoutHandler}>登出</button>
                     </li>

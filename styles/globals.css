@@ -70,6 +70,7 @@ button {
 
 .center {
     text-align: center;
+    margin: var(--size-4) auto;
 }
 
 .colorButton{
@@ -111,10 +112,3 @@ button {
         --size-main-a2: 24.8rem;
     }
 }
-
-/*@media (min-width: 500px) and (max-width: 768px) {*/
-/*    body {*/
-/*        --size-main-a1: 30rem;*/
-/*        --size-main-a2: 14.8rem;*/
-/*    }*/
-/*}*/

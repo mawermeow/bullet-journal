@@ -4,82 +4,60 @@ import JournalList from "../components/bullet/JournalList";
 import {useEffect, useState} from "react";
 import {useContext} from "react";
 import NotificationContext from "../store/NotificationContext";
+import JournalDetailContext from "../store/JournalDetailContext";
+import useJournal from "../hooks/useJournal";
+
+const getDate = () => {
+    const d = new Date();
+    return d.getFullYear() + '/' + (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getDate().toString().padStart(2, '0');
+};
 
 const DailyLogPage = () => {
-    const notificationCtx = useContext(NotificationContext);
-    const [journalItems, setJournalItems] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    useJournal();
     const [pastJournal, setPastJournal] = useState();
     const [futureJournal, setFutureJournal] = useState();
+
+    const [isLoading, setIsLoading] = useState(true);
     const [showFutureLog, setShowFutureLog] = useState(false);
     const [showTaskLog, setShowTaskLog] = useState(false);
 
-    const getDate=()=>{
-        const d = new Date();
-        return d.getFullYear()+'/'+(d.getMonth()+1).toString().padStart(2,'0')+'/'+d.getDate().toString().padStart(2,'0');
-    };
     const d = getDate();
 
-    useEffect(() => {
-        if (isLoading) {
-            notificationCtx.showNotification({status: 'render', title: '讀取中', message: '正在取得您的筆記'});
-            fetch('/api/user/journal').then(res => {
-                if (!res.ok) {
-                    notificationCtx.showNotification({status: 'error', title: '錯誤', message: '筆記獲取失敗'});
-                    return;
-                }
-                notificationCtx.showNotification({status: 'success', title: '成功', message: '筆記獲取完成'});
-                return res.json()
-            }).then(data =>
-                setJournalItems(data.items)
-            );
-            setIsLoading(false);
-        }
-    }, [isLoading])
+    const {showNotification} = useContext(NotificationContext);
+    const {logs, saveLogs} = useContext(JournalDetailContext);
+
 
     const onAddLog = (newLog) => {
-        setJournalItems(prevState => [newLog, ...prevState])
+        saveLogs(prevState => [newLog, ...prevState])
     };
 
-    const updateJournal = (updateItems) => {
-        notificationCtx.showNotification({status: 'render', title: '更新中', message: '正在更新您的筆記'});
-        fetch('/api/user/change-journal', {
-            method: 'PATCH',
-            body: JSON.stringify(updateItems),
-            headers: {
-                'Content-Type': 'application/json'
+    const getJournal = (dateList) => {
+        return dateList.map(date => {
+            let oneDateLogs = logs.filter(item => {
+                if (date === item.date) {
+                    return item
+                }
+            })
+            if (showTaskLog) {
+                oneDateLogs = oneDateLogs.filter(log => {
+                    if (log.type === 'task') {
+                        return log
+                    }
+                })
             }
-        }).then(res => {
-            if (res.ok) {
-                setJournalItems(updateItems);
-                notificationCtx.showNotification({status: 'success', title: '更新成功', message: '筆記修改完成'});
-            } else {
-                notificationCtx.showNotification({status: 'error', title: '錯誤', message: '筆記修改失敗，請重新嘗試'});
-            }
+            const dateTitle = `${date === d ? 'Today ✩ ' : ''}${date}`
+            return <div key={date}>
+                {oneDateLogs.length > 0 &&
+                    <JournalList items={oneDateLogs} dateTitle={dateTitle}/>
+                }
+            </div>
         })
     };
 
-    const onChangeLog = (updateItem) => {
-        let updateItems;
-
-        if (updateItem.type === 'DELETE') {
-            updateItems = journalItems.filter(item => {
-                if (item.id !== updateItem.id) {
-                    return item;
-                }
-            })
-        } else {
-            updateItems = journalItems.map(item => {
-                if (item.id === updateItem.id) {
-                    return updateItem
-                }
-                return item
-            })
-        }
-        updateJournal(updateItems)
-    }
-
     const getJournalDate = (journalItems) => {
+        if (!journalItems) {
+            return [];
+        }
         const allDateList = journalItems.map(item => item.date)
 
         const dateList = allDateList.filter((item, index, arr) => {
@@ -97,37 +75,14 @@ const DailyLogPage = () => {
         return [pastDateList, futureDateList]
     };
 
-    const getJournal = (dateList) => {
-        return dateList.map(date => {
-            let oneDateLogs = journalItems.filter(item => {
-                if (date === item.date) {
-                    return item
-                }
-            })
-
-            if(showTaskLog){
-                oneDateLogs = oneDateLogs.filter(log=>{
-                    if(log.type==='task'){
-                        return log
-                    }
-                })
-            }
-
-            const dateTitle = `${date === d ? 'Today ✩ ' :''}${date}`
-            return <>
-                {oneDateLogs.length>0 && <div key={date}>
-                <JournalList items={oneDateLogs} onChangeLog={onChangeLog} dateTitle={dateTitle}/>
-            </div>}
-            </>
-        })
-    };
-
 
     useEffect(() => {
-        const [pastDateList, futureDateList] = getJournalDate(journalItems);
-        setPastJournal(getJournal(pastDateList));
-        setFutureJournal(getJournal(futureDateList));
-    }, [journalItems,showTaskLog]);
+        if (logs) {
+            const [pastDateList, futureDateList] = getJournalDate(logs);
+            setPastJournal(getJournal(pastDateList));
+            setFutureJournal(getJournal(futureDateList));
+        }
+    }, [logs, showTaskLog]);
 
     return <div className='center'>
         <AddLog onAddLog={onAddLog}/>
@@ -141,7 +96,6 @@ const DailyLogPage = () => {
         </div>
         {showFutureLog && futureJournal}
         {pastJournal}
-        {/*<JournalList items={journalItems}/>*/}
     </div>
 };
 
@@ -156,10 +110,10 @@ export async function getServerSideProps(context) {
             },
         };
     }
+
     return {
         props: {session}
     };
-
 }
 
 export default DailyLogPage;
