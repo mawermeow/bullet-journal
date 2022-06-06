@@ -3,6 +3,7 @@ import {useContext, useEffect, useState} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
 import useJournal from "../../hooks/useJournal";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
+import Head from "next/head";
 
 const TagsPage = () => {
     useJournal();
@@ -30,6 +31,10 @@ const TagsPage = () => {
 
 
     return <>
+        <Head>
+            <title>自定義標籤 - Customer Tags</title>
+            <meta name="description" content="「客製化」區塊，可以自行定義標籤、新增任務。如：親友生日、目標設定、令人開心的事、買買買清單⋯⋯"/>
+        </Head>
         {tags && <TagGrid tags={tags}/>}
     </>
 };

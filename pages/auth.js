@@ -24,7 +24,8 @@ const AuthPage=()=>{
 
     return <>
         <Head>
-            <meta name="description" content="登入以使用線上子彈筆記"/>
+            <title>登入頁面 - Login Page</title>
+            <meta name="description" content="免費申請帳號&登入，即可馬上開始使用線上子彈筆記！"/>
         </Head>
         <AuthForm/>
     </>;

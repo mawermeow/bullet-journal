@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {useContext} from "react";
 import JournalDetailContext from "../store/JournalDetailContext";
 import useJournal from "../hooks/useJournal";
+import Head from "next/head";
 
 const getDate = () => {
     const d = new Date();
@@ -76,7 +77,12 @@ const DailyLogPage = () => {
         }
     }, [logs, showTaskLog]);
 
-    return <div className='center'>
+    return <>
+        <Head>
+            <title>日誌 - Daily Logs</title>
+            <meta name="description" content="開始撰寫你的子彈筆記吧！點擊任務前面的圖示可以完成任務，點擊筆記的文字部分可以進行修改、指派日期和新增客製化標籤。未指定日期的筆記將標示「很久以後」..."/>
+        </Head>
+        <div className='center'>
         <AddLog/>
         <div className="colorButton">
             <button onClick={() => setShowFutureLog(prevState => !prevState)}>
@@ -89,6 +95,7 @@ const DailyLogPage = () => {
         {showFutureLog && futureJournal}
         {pastJournal}
     </div>
+    </>
 };
 
 export async function getServerSideProps(context) {

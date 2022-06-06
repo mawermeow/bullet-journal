@@ -28,7 +28,6 @@ const JournalItemDetail = () => {
     const saveDetailLog = () => {
         const newDate = formatDate(date);
         const formattedTag = tag.replace(/\s/g, '').replace(/#＃/g, '');
-        console.log(formattedTag)
         detailLogCtx.saveDetailLog({...detailLog, title, date: newDate, tag:formattedTag});
     };
 
