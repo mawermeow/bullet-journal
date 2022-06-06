@@ -1,6 +1,13 @@
 import classes from "./JournalItemDetail.module.css";
 import {useContext, useState} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
+import Calendar from "../icon/Calendar";
+import Hashtag from "../icon/Hashtag";
+import ChatAlt from "../icon/ChatAlt";
+import Save from "../icon/Save";
+import Trash from "../icon/Trash";
+import XCircle from "../icon/XCircle";
+import Pencil from "../icon/Pencil";
 
 const formatDate = (dateStr) => {
     return dateStr.replace(/-/g, '/')
@@ -33,19 +40,19 @@ const JournalItemDetail = () => {
         <div className={classes.backdrop} onClick={detailLogCtx.hideDetailLog}/>
         <div className={classes.detailModal}>
 
-            <h2>編輯筆記</h2>
+            <h2><Pencil/> 編輯筆記</h2>
             <div className={classes.control}>
-                <label htmlFor="title">內容</label>
+                <label htmlFor="title"><ChatAlt/> 內容</label>
                 <textarea rows="3" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
             </div>
 
             <div className={classes.row}>
                 <div className={classes.control}>
-                    <label htmlFor="date">轉移日期</label>
+                    <label htmlFor="date"><Calendar/> 執行日期</label>
                     <input type="date" id="date" value={date} onChange={event => setDate(event.target.value)}/>
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor="date">標籤</label>
+                    <label htmlFor="date"><Hashtag/> 自定義標籤</label>
                     <input type="text" id="tag" value={tag} onChange={event => setTag(event.target.value)}/>
                 </div>
             </div>
@@ -53,13 +60,13 @@ const JournalItemDetail = () => {
 
             <div className={classes.detailModal__actions}>
                 <button type="button" onClick={saveDetailLog}>
-                    儲存
+                    <Save/> 儲存
                 </button>
                 <button type="button" onClick={deleteDetailLog}>
-                    刪除
+                    <Trash/> 刪除
                 </button>
                 <button type="button" onClick={detailLogCtx.hideDetailLog}>
-                    取消
+                    <XCircle/> 取消
                 </button>
             </div>
 

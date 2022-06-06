@@ -22,6 +22,9 @@
     color: white;
     border-radius: 7px 7px 0 0;
 }
+.detailModal h2 svg {
+    vertical-align: baseline;
+}
 
 .detailModal p {
     padding: 1rem;
@@ -37,17 +40,19 @@
     color: var(--color-main-700);
     font-weight: bold;
     margin-bottom: 0.5rem;
+    vertical-align: text-top;
 }
 
 .row {
     display: flex;
     gap: 2rem;
-    flex-wrap: wrap;
+    /*flex-wrap: nowrap;*/
+    justify-content: space-between;
 }
 
 .control input{
     font: inherit;
-    background-color: var(--color-secondary-50);
+    /*background-color: var(--color-secondary-50);*/
     color: var(--color-main-900);
     border-radius: 7px;
     border: 1px solid var(--color-main-100);
@@ -58,13 +63,19 @@
 
 .control textarea{
     font: inherit;
-    background-color: var(--color-secondary-50);
+    /*background-color: var(--color-secondary-50);*/
     color: var(--color-main-900);
     border-radius: 7px;
     border: 1px solid var(--color-main-100);
-    width: 100%;
+    width: 98%;
     text-align: left;
     padding: 0.25rem;
+}
+
+.detailModal svg{
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: bottom;
 }
 
 .detailModal__actions {

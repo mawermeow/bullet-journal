@@ -53,6 +53,11 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+svg {
+    width: 2rem;
+    height: 2rem;
+}
+
 h1,
 h2,
 h3 {
