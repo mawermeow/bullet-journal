@@ -7,6 +7,7 @@ import AddLog from "../../components/bullet/AddLog";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import {getSession} from "next-auth/client";
 import Head from "next/head";
+import TagHead from "../../components/bullet/TagHead";
 
 
 const TagDetailPage = (props) => {
@@ -31,6 +32,7 @@ const TagDetailPage = (props) => {
             <title>{tagName}  - Customer Tags</title>
             <meta name="description" content="「客製化」區塊，可以自行定義標籤、新增任務。如：親友生日、目標設定、令人開心的事、買買買清單⋯⋯"/>
         </Head>
+        <TagHead tagName={tagName}/>
         <AddLog tagName={tagName}/>
         <JournalList items={tagLogFilter} dateTitle={`★ ${tagName}`}/>
     </>

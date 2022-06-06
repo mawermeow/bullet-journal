@@ -1,0 +1,19 @@
+.head {
+    margin: var(--size-4) auto 0;
+    border-radius: 7px;
+    background-color: var(--color-direct-100);
+    width: 90%;
+    max-width: var(--size-main-a1);
+    /*padding-bottom: var(--size-2);*/
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    /*font-size: var(--size-5);*/
+}
+
+.head h2 {
+    margin: 0;
+    text-align: center;
+    padding: var(--size-4);
+    background:var(--color-main-800);
+    color: white;
+    border-radius: 7px 7px 0 0;
+}

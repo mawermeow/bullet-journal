@@ -51,7 +51,7 @@ const AddLog=(props)=>{
     };
 
     return (
-        <section className={classes['log-item']}>
+        <section className={tagName?classes['log-item-tag']:classes['log-item']}>
             <form className={classes.form} onSubmit={addLogHandler}>
                 <div className={classes.control}>
                     <input type="text" value={logTitle}

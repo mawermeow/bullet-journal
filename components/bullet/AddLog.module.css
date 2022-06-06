@@ -9,11 +9,6 @@
     font-size: var(--size-4);
 }
 
-.log-item h1 {
-    font-size: var(--size-8);
-    margin: var(--size-4) 0;
-    text-align: left;
-}
 
 .form label {
     display: block;
@@ -53,6 +48,17 @@
     width: var(--size-5);
     height: var(--size-5);
     vertical-align: sub;
+}
+
+.log-item-tag{
+    margin: 0 auto var(--size-4);
+    border-radius: 0 0 6px 6px;
+    background-color: var(--color-direct-100);
+    width: 90%;
+    max-width: var(--size-main-a1);
+    padding: var(--size-4);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    font-size: var(--size-4);
 }
 
 .form button {
