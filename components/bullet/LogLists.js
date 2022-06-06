@@ -4,32 +4,20 @@ import localDate from "../../lib/local-date";
 const LogLists = (props) => {
     const {dateList, logs, showTaskLog} = props;
 
-    if (!showTaskLog) {
-        return dateList.map(date => {
-
-                const oneDateLogs = logs.filter(log => {
-                    if (log.date === date) {
-                        return log;
-                    }
-                });
-
-                const dateTitle = `${date === localDate ? 'Today ✩ ' : date === '' ? '很久以後' : ''}${date}`;
-
-                return <LogList key={dateTitle} items={oneDateLogs} dateTitle={dateTitle}/>
-            }
-        )
-    }
+    const validationRules = (date,log)=>{
+        return showTaskLog?(log.date === date):(log.date === date && log.type === 'task');
+    };
 
     return dateList.map(date => {
         const oneDateLogs = logs.filter(log => {
-            if (log.type === 'task' && log.date === date) {
+            if (validationRules(date,log)) {
                 return log;
             }
         })
 
-        const dateTitle = `${date === localDate ? 'Today ✩ ' :date===''?'很久以後': ''}${date}`;
+        const dateTitle = `${date === localDate ? 'Today ✩ ' : date === '' ? '很久以後' : ''}${date}`;
 
-        if(oneDateLogs.length>0){
+        if (oneDateLogs.length > 0) {
             return <LogList key={dateTitle} items={oneDateLogs} dateTitle={dateTitle}/>
         }
     });
