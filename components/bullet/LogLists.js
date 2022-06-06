@@ -5,7 +5,7 @@ const LogLists = (props) => {
     const {dateList, logs, showTaskLog} = props;
 
     const validationRules = (date,log)=>{
-        return showTaskLog?(log.date === date):(log.date === date && log.type === 'task');
+        return showTaskLog?(log.date === date && log.type === 'task'):(log.date === date);
     };
 
     return dateList.map(date => {
