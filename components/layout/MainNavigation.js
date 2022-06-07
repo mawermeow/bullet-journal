@@ -21,7 +21,7 @@ const MainNavigation = () => {
         <nav>
             <ul>{session &&
                 <>
-                    <li><Link href="/"><a className='button'><PencilAlt/></a></Link></li>
+                    <li><Link href="/daily"><a className='button'><PencilAlt/></a></Link></li>
                     <li><Link href="/tags"><a className='button'><Hashtag/></a></Link></li>
                     <li>
                         <button onClick={logoutHandler}>登出</button>
