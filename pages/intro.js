@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Intro from "../components/intro/Intro";
 
 const IntroPage=()=>{
     return <div className='center'>
@@ -6,8 +7,7 @@ const IntroPage=()=>{
             <title>介紹頁面 - 子彈筆記</title>
             <meta name="description" content="什麼是子彈筆記？"/>
         </Head>
-        <h1>什麼是子彈筆記</h1>
-        <h1>本網站使用方法</h1>
+        <Intro/>
     </div>
 };
 

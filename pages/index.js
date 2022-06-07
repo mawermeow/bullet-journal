@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
     if (!session) {
         return {
             redirect: {
-                destination: '/auth',
+                destination: '/intro',
                 permanent: false,
             },
         };
