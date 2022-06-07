@@ -11,7 +11,7 @@
     border-radius: 4px;
     color: var(--color-main-50);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    width: 49.8%;
+    width: 24.8%;
     display: inline-block;
     margin-right: 0.1%;
     margin-left: 0.1%;
@@ -19,6 +19,27 @@
 
 .controlButton button:hover {
     color: var(--color-main-800);
+    background-color: var(--color-main-50);
+    border-color: var(--color-main-50);
+}
+
+.unControlButton button{
+    font: inherit;
+    cursor: pointer;
+    background-color: var(--color-secondary-700);
+    border: 1px solid var(--color-secondary-700);
+    padding: var(--size-1) var(--size-1);
+    border-radius: 4px;
+    color: var(--color-main-50);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    width: 24.8%;
+    display: inline-block;
+    margin-right: 0.1%;
+    margin-left: 0.1%;
+}
+
+.unControlButton button:hover {
+    color: var(--color-secondary-700);
     background-color: var(--color-main-50);
     border-color: var(--color-main-50);
 }

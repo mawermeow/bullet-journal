@@ -5,7 +5,6 @@ import JournalDetailContext from "../../store/JournalDetailContext";
 import LogItemEditor from "../editor/LogItemEditor";
 import {useContext} from "react";
 import Footer from "./Footer";
-import Wrapper from "./Wrapper";
 
 const Layout = (props) => {
     const notificationCtx = useContext(NotificationContext);
