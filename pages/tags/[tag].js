@@ -5,27 +5,36 @@ import {useRouter} from "next/router";
 import useJournal from "../../hooks/useJournal";
 import Head from "next/head";
 import LogEditor from "../../components/editor/LogEditor";
+import LoadingSpinner from "../../components/ui/LoadingSpinner";
 
 
-const TagDetailPage = (props) => {
+const TagDetailPage = () => {
     const {logs} = useContext(JournalDetailContext);
     const router = useRouter();
     const tagName = router.query.tag;
 
-    const tagLogFilter = logs.filter(log => {
-        if (tagName === log.tag) {
-            return log;
-        }
-    })
-
     useJournal();
 
+    const head = <Head>
+        <title>{tagName} - Customer Tags</title>
+        <meta name="description" content="「客製化」區塊，可以自行定義標籤、新增任務。如：親友生日、目標設定、令人開心的事、買買買清單⋯⋯"/>
+    </Head>
+
+    if(logs){
+        const tagLogFilter = logs.filter(log => {
+            if (tagName === log.tag) {
+                return log;
+            }
+        })
+        return <>
+            {head}
+            {logs && <LogEditor logs={tagLogFilter} tagName={tagName}/>}
+        </>
+    }
+
     return <>
-        <Head>
-            <title>{tagName} - Customer Tags</title>
-            <meta name="description" content="「客製化」區塊，可以自行定義標籤、新增任務。如：親友生日、目標設定、令人開心的事、買買買清單⋯⋯"/>
-        </Head>
-        <LogEditor logs={tagLogFilter} tagName={tagName}/>
+        {head}
+        {!logs && <div className="center"><LoadingSpinner/></div>}
     </>
 };
 

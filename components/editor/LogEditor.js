@@ -15,10 +15,10 @@ const LogEditor = (props) => {
     const [showFutureLog, setShowFutureLog] = useState(true);
 
     const [showTaskLog, setShowTaskLog] = useState(false);
-    const togglePastLog = () => setShowPastLog(prevState => !prevState);
-    const toggleFutureLog = () => setShowFutureLog(prevState => !prevState);
-    const toggleTaskLog = () => setShowTaskLog(prevState => !prevState);
-    const toggleSortLog = () => setSortLog(prevState => !prevState);
+    // const togglePastLog = () => setShowPastLog(prevState => !prevState);
+    // const toggleFutureLog = () => setShowFutureLog(prevState => !prevState);
+    // const toggleTaskLog = () => setShowTaskLog(prevState => !prevState);
+    // const toggleSortLog = () => setSortLog(prevState => !prevState);
 
     const [nowDateList, setNowDateList] = useState([]);
     const [pastDateList, setPastDateList] = useState([]);
@@ -49,7 +49,6 @@ const LogEditor = (props) => {
         setFutureDateList(futureDateArray);
     };
 
-
     useEffect(() => {
         if (logs) {
             splitLogsFromToday(logs);
@@ -64,10 +63,10 @@ const LogEditor = (props) => {
         {tagName && <AddLogForm_TagHead tagName={tagName}/>}
         <AddLogForm tagName={tagName}/>
         <ControlButton
-            onToggleSortLog={toggleSortLog}
-            onToggleTaskLog={toggleTaskLog}
-            onTogglePastLog={togglePastLog}
-            onToggleFutureLog={toggleFutureLog}
+            onToggleSortLog={()=>setSortLog(prevState => !prevState)}
+            onToggleTaskLog={()=>setShowTaskLog(prevState => !prevState)}
+            onTogglePastLog={()=>setShowPastLog(prevState => !prevState)}
+            onToggleFutureLog={()=>setShowFutureLog(prevState => !prevState)}
             sortLog={sortLog}
             showTaskLog={showTaskLog}
             showPastLog={showPastLog}
