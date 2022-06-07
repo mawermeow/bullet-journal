@@ -31,22 +31,28 @@ const LogEditor = (props) => {
             allDateList.reverse();
         }
 
-        let todayDataArray = [''];
-        let futureDateArray = [''];
+        let todayDataArray = [];
+        let futureDateArray = [];
+
         const pastDateArray = allDateList.filter(dateItem => {
             if (localDate > dateItem) {
                 return dateItem
             }
             if (localDate < dateItem) {
                 futureDateArray.push(dateItem);
-            } else {
+            }
+            if (localDate === dateItem){
                 todayDataArray.push(dateItem);
             }
         })
 
+        if (sortLog) {
+            setFutureDateList([...futureDateArray,'']);
+        }else{
+            setFutureDateList(['',...futureDateArray]);
+        }
         setNowDateList(todayDataArray);
         setPastDateList(pastDateArray);
-        setFutureDateList(futureDateArray);
     };
 
     useEffect(() => {
