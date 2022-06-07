@@ -11,7 +11,7 @@ const AuthPage=()=>{
     useEffect(() => {
         getSession().then((session) => {
             if (session) {
-                router.replace('/daily');
+                router.replace('/');
             } else {
                 setIsLoading(false);
             }
