@@ -1,6 +1,5 @@
 import classes from "./LogItemEditor.module.css";
-import {useContext, useState} from "react";
-import JournalDetailContext from "../../store/JournalDetailContext";
+import {useState} from "react";
 import Calendar from "../icon/Calendar";
 import Hashtag from "../icon/Hashtag";
 import ChatAlt from "../icon/ChatAlt";
@@ -17,26 +16,25 @@ const unFormatDate = (dateStr) => {
     return dateStr.replace(/\//g, '-')
 }
 
-const LogItemEditor = () => {
-    const detailLogCtx = useContext(JournalDetailContext);
-    const {detailLog} = detailLogCtx;
+const LogItemEditor = (props) => {
+    const {detailLog,saveDetailLog,hideDetailLog} = props.journalCtx;
+
     const [title, setTitle] = useState(detailLog.title);
     const [tag, setTag] = useState(detailLog.tag);
-
     const [date, setDate] = useState(unFormatDate(detailLog.date));
 
-    const saveDetailLog = () => {
+    const saveDetailLogHandler = () => {
         const newDate = formatDate(date);
         const formattedTag = tag.replace(/\s/g, '').replace(/#＃/g, '');
-        detailLogCtx.saveDetailLog({...detailLog, title, date: newDate, tag:formattedTag});
+        saveDetailLog({...detailLog, title, date: newDate, tag:formattedTag});
     };
 
-    const deleteDetailLog = () => {
-        detailLogCtx.saveDetailLog({...detailLog, type: 'DELETE'});
+    const deleteDetailLogHandler = () => {
+        saveDetailLog({...detailLog, type: 'DELETE'});
     };
 
     return <>
-        <div className={classes.backdrop} onClick={detailLogCtx.hideDetailLog}/>
+        <div className={classes.backdrop} onClick={hideDetailLog}/>
         <div className={classes.detailModal}>
 
             <h2><Pencil/> 編輯筆記</h2>
@@ -58,13 +56,13 @@ const LogItemEditor = () => {
 
 
             <div className={classes.detailModal__actions}>
-                <button type="button" onClick={saveDetailLog}>
+                <button type="button" onClick={saveDetailLogHandler}>
                     <Save/> 儲存
                 </button>
-                <button type="button" onClick={deleteDetailLog}>
+                <button type="button" onClick={deleteDetailLogHandler}>
                     <Trash/> 刪除
                 </button>
-                <button type="button" onClick={detailLogCtx.hideDetailLog}>
+                <button type="button" onClick={hideDetailLog}>
                     <XCircle/> 取消
                 </button>
             </div>

@@ -98,7 +98,6 @@
 .detailModal__actions button:hover {
     color: var(--color-main-800);
     background-color: white;
-    border-color: white;
 }
 
 .backdrop {

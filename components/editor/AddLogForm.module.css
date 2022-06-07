@@ -1,5 +1,5 @@
 .log-item {
-    margin: var(--size-8) auto var(--size-4);
+    margin: var(--size-4) auto var(--size-4);
     border-radius: 6px;
     background-color: var(--color-direct-100);
     width: 90%;

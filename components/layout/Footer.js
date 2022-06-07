@@ -1,8 +1,8 @@
 import classes from "./Footer.module.css";
 
-const Footer=()=>{
+const Footer = () => {
     return <>
-
+        <div className={classes.footer}/>
     </>
 };
 

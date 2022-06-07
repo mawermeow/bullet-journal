@@ -4,23 +4,27 @@ import Notification from "../ui/Notification";
 import JournalDetailContext from "../../store/JournalDetailContext";
 import LogItemEditor from "../editor/LogItemEditor";
 import {useContext} from "react";
+import Footer from "./Footer";
+import Wrapper from "./Wrapper";
 
-const Layout=(props)=>{
-    const notificationCtx=useContext(NotificationContext);
+const Layout = (props) => {
+    const notificationCtx = useContext(NotificationContext);
     const notification = notificationCtx.notification;
 
-    const detailLogCtx = useContext(JournalDetailContext);
-    const detailLog = detailLogCtx.detailLog;
+    const journalCtx = useContext(JournalDetailContext);
 
     return <>
         <MainNavigation/>
+
         <main>{props.children}</main>
-        {detailLog && <LogItemEditor/>}
+        {journalCtx.detailLog && <LogItemEditor journalCtx={journalCtx}/>}
         {notification && <Notification
             title={notification.title}
             message={notification.message}
             status={notification.status}
         />}
+
+        <Footer/>
     </>
 };
 export default Layout;

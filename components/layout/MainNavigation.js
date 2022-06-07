@@ -7,10 +7,6 @@ import PencilAlt from "../icon/PencilAlt";
 
 const MainNavigation = () => {
     const [session, loading] = useSession();
-    const d = new Date();
-    const yearlyLog = `/${d.getFullYear()}`;
-    const monthlyLog = `/${d.getFullYear()}/${d.getMonth()}`;
-    const dailyLog = `/${d.getFullYear()}/${d.getMonth()}/${d.getDate()}`;
 
     const logoutHandler=async ()=> {
         await signOut();
@@ -34,7 +30,6 @@ const MainNavigation = () => {
                 {!session && !loading && <li>
                     <Link href="/auth"><button>登入</button></Link>
                 </li>}
-
             </ul>
         </nav>
     </header>
