@@ -2,9 +2,9 @@ import {useContext} from "react";
 import NotificationContext from "../store/NotificationContext";
 import JournalDetailContext from "../store/JournalDetailContext";
 
-const useUpdate=()=>{
+const useUpdate = () => {
     const {showNotification} = useContext(NotificationContext);
-    const {logs,saveLogs} = useContext(JournalDetailContext);
+    const {logs, saveLogs} = useContext(JournalDetailContext);
 
     const updateJournal = (updateItems) => {
         showNotification({status: 'render', title: '更新中', message: '正在更新您的筆記'});
@@ -45,9 +45,10 @@ const useUpdate=()=>{
     }
 
     const onChangeLogs = (updateItems) => {
+        const {multiChangedLog} = updateItems;
         let updatedItems;
 
-        const updateIds = updateItems.map(item=>item.id);
+        const updateIds = multiChangedLog.map(item => item.id);
 
         if (updateItems.type === 'DELETE') {
             updatedItems = logs.filter(item => {
@@ -56,12 +57,17 @@ const useUpdate=()=>{
                 }
             })
         } else {
-            let counter = 0;
+            const {date, tag} = updateItems;
             updatedItems = logs.map(item => {
                 if (updateIds.includes(item.id)) {
-                    const wouldUpdate = updateItems[counter];
-                    counter += 1;
-                    return
+                    let newItem = {...item};
+                    if (date) {
+                        newItem = {...item, date};
+                    }
+                    if (tag) {
+                        newItem = {...item, tag}
+                    }
+                    return newItem
                 }
                 return item
             })
@@ -69,14 +75,7 @@ const useUpdate=()=>{
         updateJournal(updatedItems);
     }
 
-    return (updateItem) => {
-
-        if (updateItem.isArray) {
-            onChangeLogs(updateItem);
-        }else{
-            onChangeLog(updateItem);
-        }
-    };
+    return {updateLog: onChangeLog, updateLogs: onChangeLogs}
 }
 
 export default useUpdate;

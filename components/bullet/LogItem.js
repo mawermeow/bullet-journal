@@ -10,8 +10,6 @@ import LightBulb from "../icon/LightBulb";
 import Flag from "../icon/Flag";
 
 
-
-
 const typeToIcon = (type) => {
     if (type === 'event') {
         return LightBulb;
@@ -28,17 +26,16 @@ const typeToIcon = (type) => {
 };
 
 const LogItem = (props) => {
-    const detailLogCtx = useContext(JournalDetailContext);
-    const {changedLog,clearChangedLog}= detailLogCtx;
-    const {item,tagMode} = props;
+    const {changedLog,clearChangedLog,showDetailLog,setMultiChangedLog} = useContext(JournalDetailContext);
+    const {item,editMode,setEditMode} = props;
     const [iconType,setIconType]=useState(item.type);
     const Icon = typeToIcon(iconType);
-    const updateLogs = useUpdate();
-
+    const {updateLog} = useUpdate();
+    const [checked,setChecked]=useState(false);
 
     useEffect(()=>{
         if(changedLog){
-            updateLogs(changedLog);
+            updateLog(changedLog);
             clearChangedLog();
         }
     },[changedLog])
@@ -46,25 +43,45 @@ const LogItem = (props) => {
     const clickIcon=()=>{
         if(iconType==='task'){
             setIconType('taskOK')
-            updateLogs({...item,type:'taskOK'});
+            updateLog({...item,type:'taskOK'});
         }
         if(iconType==='taskOK'){
             setIconType('task')
-            updateLogs({...item,type:'task'});
+            updateLog({...item,type:'task'});
         }
     }
 
     const clickTitle=()=>{
-        detailLogCtx.showDetailLog(item);
+        setEditMode(false);
+        showDetailLog(item);
     };
 
     const itemClass = `${classes.item} ${iconType==='task'?classes.task:''}`
 
+    if(checked){
+        if(!editMode){
+            setChecked(false);
+        }
+    }
+
     return <li className={itemClass}>
+        {editMode && <span>
+            <input type="checkbox" checked={checked} onChange={(event)=>{
+                setChecked(prevState => !prevState);
+                if(!checked){
+                    setMultiChangedLog(prev=>[...prev,item]);
+                }else{
+                    setMultiChangedLog(prev=>prev.filter(log=>{
+                        if(log!==item){
+                            return log;
+                        }
+                    }))
+                }
+            }}/>
+        </span>}
           <span className={classes.icon} onClick={clickIcon}>
             <Icon/>
           </span>
-        {tagMode && <span>{item.date}</span>}
           <span onClick={clickTitle}>{item.title}</span>
     </li>;
 };

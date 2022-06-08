@@ -6,10 +6,12 @@ import cleanArray from "../../lib/clean-array";
 import localDate from "../../lib/local-date";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import AddLogForm_TagHead from "./AddLogForm_TagHead";
+import LogItemsEditor from "./LogItemsEditor";
 
 const LogEditor = (props) => {
     const {logs, tagName, showStatus} = props;
 
+    const [editMode, setEditMode] = useState(false);
     const [sortLog, setSortLog] = useState(true);
     const [showTaskLog, setShowTaskLog] = useState(false);
     const [showPastLog, setShowPastLog] = useState(showStatus.pastLog);
@@ -57,9 +59,11 @@ const LogEditor = (props) => {
         }
     }, [logs, sortLog]);
 
-    const pastLog = <LogLists dateList={dateList.past} logs={logs} showTaskLog={showTaskLog}/>
-    const nowLog = <LogLists dateList={dateList.now} logs={logs} showTaskLog={showTaskLog}/>
-    const futureLog = <LogLists dateList={dateList.future} logs={logs} showTaskLog={showTaskLog}/>
+    const status = {logs,showTaskLog,editMode,setEditMode};
+
+    const pastLog = <LogLists dateList={dateList.past} status={status}/>
+    const nowLog = <LogLists dateList={dateList.now} status={status}/>
+    const futureLog = <LogLists dateList={dateList.future} status={status}/>
 
     return <>
         {tagName && <AddLogForm_TagHead tagName={tagName}/>}
@@ -69,13 +73,15 @@ const LogEditor = (props) => {
             onToggleTaskLog={()=>setShowTaskLog(prevState => !prevState)}
             onTogglePastLog={()=>setShowPastLog(prevState => !prevState)}
             onToggleFutureLog={()=>setShowFutureLog(prevState => !prevState)}
+            onToggleEditMode={()=>setEditMode(prevState => !prevState)}
             sortLog={sortLog}
             showTaskLog={showTaskLog}
             showPastLog={showPastLog}
             showFutureLog={showFutureLog}
+            editMode={editMode}
         />
         {!logs && <div className="center"><LoadingSpinner/></div>}
-
+        {logs && editMode && <LogItemsEditor editMode={editMode} onClose={()=>setEditMode(prevState => !prevState)}/>}
         {logs && sortLog && showPastLog && pastLog}
         {logs && !sortLog && showFutureLog && futureLog}
         {logs && nowLog}

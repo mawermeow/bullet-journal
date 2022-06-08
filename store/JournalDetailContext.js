@@ -9,12 +9,15 @@ const JournalDetailContext = createContext({
     clearChangedLog:()=>{},
     logs:null,
     saveLogs:(newLogs)=>{},
+    multiChangedLog:[],
+    setMultiChangedLog:()=>{}
 });
 
 export const JournalContextProvider = props =>{
     const [detailLog,setDetailLog] = useState();
     const [changedLog,setChangedLog] = useState();
     const [logs,setLogs] = useState();
+    const [multiChangedLog,setMultiChangedLog] = useState([]);
 
     const showDetailLog=(detailLog)=>{
         setDetailLog(detailLog);
@@ -40,7 +43,7 @@ export const JournalContextProvider = props =>{
 
     return <JournalDetailContext.Provider value={{
         detailLog, showDetailLog,hideDetailLog,saveDetailLog,changedLog,clearChangedLog,
-        logs,saveLogs
+        logs,saveLogs,multiChangedLog,setMultiChangedLog
     }}>
         {props.children}
     </JournalDetailContext.Provider>
