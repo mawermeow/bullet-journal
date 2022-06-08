@@ -13,7 +13,7 @@ const MainNavigation = () => {
     }
 
     return <header className={classes.header}>
-        <Link href="/intro">
+        <Link href="/">
             <a>
                 <Logo/>
             </a>
