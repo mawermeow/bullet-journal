@@ -25,5 +25,10 @@
 
 .content b{
     color: var(--color-secondary-700);
-    /*background-color: var(--color-direct-100);*/
+}
+
+.content svg{
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: bottom;
 }

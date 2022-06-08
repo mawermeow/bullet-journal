@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import NotificationContext from "../../store/NotificationContext";
 
 import classes from './AuthForm.module.css';
+import Mail from "../icon/Mail";
+import Key from "../icon/Key";
 
 async function createUser(email, password) {
     const response = await fetch('/api/auth/signup', {
@@ -73,11 +75,11 @@ function AuthForm() {
             <h1>{isLogin ? '登入' : '註冊'}</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.control}>
-                    <label htmlFor='email'>電子信箱</label>
+                    <label htmlFor='email'><Mail/> 電子信箱</label>
                     <input type='email' id='email' required ref={emailInputRef} />
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor='password'>密碼</label>
+                    <label htmlFor='password'><Key/> 密碼</label>
                     <input
                         type='password'
                         id='password'

@@ -36,6 +36,12 @@
     padding: 0.25rem;
 }
 
+.control svg{
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: bottom;
+}
+
 .actions {
     margin-top: 1.5rem;
     display: flex;
