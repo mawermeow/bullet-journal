@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import AuthForm from "../components/auth/AuthForm";
-import { useRouter } from 'next/router';
-import { getSession } from 'next-auth/client';
-import { useEffect, useState } from 'react';
+import {useRouter} from 'next/router';
+import {getSession} from 'next-auth/client';
+import {useEffect, useState} from 'react';
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
-const AuthPage=()=>{
+const AuthPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
 
@@ -19,7 +20,9 @@ const AuthPage=()=>{
     }, [router]);
 
     if (isLoading) {
-        return <p className="center">Loading...</p>;
+        return <div className="center">
+            <LoadingSpinner/>
+        </div>
     }
 
     return <>
