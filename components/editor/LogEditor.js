@@ -8,31 +8,24 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 import AddLogForm_TagHead from "./AddLogForm_TagHead";
 
 const LogEditor = (props) => {
-    const {logs, tagName} = props;
+    const {logs, tagName, showStatus} = props;
 
     const [sortLog, setSortLog] = useState(true);
-    const [showPastLog, setShowPastLog] = useState(false);
-    const [showFutureLog, setShowFutureLog] = useState(true);
-
     const [showTaskLog, setShowTaskLog] = useState(false);
-    // const togglePastLog = () => setShowPastLog(prevState => !prevState);
-    // const toggleFutureLog = () => setShowFutureLog(prevState => !prevState);
-    // const toggleTaskLog = () => setShowTaskLog(prevState => !prevState);
-    // const toggleSortLog = () => setSortLog(prevState => !prevState);
+    const [showPastLog, setShowPastLog] = useState(showStatus.pastLog);
+    const [showFutureLog, setShowFutureLog] = useState(showStatus.futureLog);
 
-    const [nowDateList, setNowDateList] = useState([]);
-    const [pastDateList, setPastDateList] = useState([]);
-    const [futureDateList, setFutureDateList] = useState([]);
+    const [dateList,setDateList] = useState({
+        now:[],
+        past:[],
+        future:[]
+    });
 
     const splitLogsFromToday = (originalLogs) => {
         const allDateList = cleanArray(originalLogs.map(log => log.date));
 
-        if (sortLog) {
-            allDateList.reverse();
-        }
-
         let todayDataArray = [];
-        let futureDateArray = [];
+        let futureDateArray = [''];
 
         const pastDateArray = allDateList.filter(dateItem => {
             if (localDate > dateItem) {
@@ -47,12 +40,15 @@ const LogEditor = (props) => {
         })
 
         if (sortLog) {
-            setFutureDateList([...futureDateArray,'']);
-        }else{
-            setFutureDateList(['',...futureDateArray]);
+            pastDateArray.reverse();
+            futureDateArray.reverse();
         }
-        setNowDateList(todayDataArray);
-        setPastDateList(pastDateArray);
+
+        setDateList({
+            now:todayDataArray,
+            past:pastDateArray,
+            future:futureDateArray
+        })
     };
 
     useEffect(() => {
@@ -61,9 +57,9 @@ const LogEditor = (props) => {
         }
     }, [logs, sortLog]);
 
-    const pastLog = <LogLists dateList={pastDateList} logs={logs} showTaskLog={showTaskLog}/>
-    const nowLog = <LogLists dateList={nowDateList} logs={logs} showTaskLog={showTaskLog}/>
-    const futureLog = <LogLists dateList={futureDateList} logs={logs} showTaskLog={showTaskLog}/>
+    const pastLog = <LogLists dateList={dateList.past} logs={logs} showTaskLog={showTaskLog}/>
+    const nowLog = <LogLists dateList={dateList.now} logs={logs} showTaskLog={showTaskLog}/>
+    const futureLog = <LogLists dateList={dateList.future} logs={logs} showTaskLog={showTaskLog}/>
 
     return <>
         {tagName && <AddLogForm_TagHead tagName={tagName}/>}

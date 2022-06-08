@@ -12,6 +12,7 @@ const TagDetailPage = () => {
     const {logs} = useContext(JournalDetailContext);
     const router = useRouter();
     const tagName = router.query.tag;
+    const showStatus = {pastLog:true,futureLog:true}
 
     useJournal();
 
@@ -28,7 +29,7 @@ const TagDetailPage = () => {
         })
         return <>
             {head}
-            {logs && <LogEditor logs={tagLogFilter} tagName={tagName}/>}
+            {logs && <LogEditor logs={tagLogFilter} tagName={tagName} showStatus={showStatus}/>}
         </>
     }
 
