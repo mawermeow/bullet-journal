@@ -21,6 +21,7 @@ const ControlButton = (props) => {
                 僅任務
             </button>
         </span>
+        <button >批量編輯</button>
         <button onClick={() => props.onToggleSortLog()}>
             {sortLog ? '舊>新' : '新>舊'}
         </button>

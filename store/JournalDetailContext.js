@@ -8,7 +8,7 @@ const JournalDetailContext = createContext({
     changedLog:null,
     clearChangedLog:()=>{},
     logs:null,
-    saveLogs:(newLogs)=>{}
+    saveLogs:(newLogs)=>{},
 });
 
 export const JournalContextProvider = props =>{

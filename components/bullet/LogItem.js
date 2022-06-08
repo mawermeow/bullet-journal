@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import classes from "./LogItem.module.css";
 import {useContext} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
+import useUpdate from "../../hooks/useUpdate";
 
 import CheckCircle from "../icon/CheckCircle";
 import ExclamationCircle from "../icon/ExclamationCircle";
@@ -32,10 +33,12 @@ const LogItem = (props) => {
     const {item,tagMode} = props;
     const [iconType,setIconType]=useState(item.type);
     const Icon = typeToIcon(iconType);
+    const updateLogs = useUpdate();
+
 
     useEffect(()=>{
         if(changedLog){
-            props.onChangeLog(changedLog);
+            updateLogs(changedLog);
             clearChangedLog();
         }
     },[changedLog])
@@ -43,11 +46,11 @@ const LogItem = (props) => {
     const clickIcon=()=>{
         if(iconType==='task'){
             setIconType('taskOK')
-            props.onChangeLog({...item,type:'taskOK'});
+            updateLogs({...item,type:'taskOK'});
         }
         if(iconType==='taskOK'){
             setIconType('task')
-            props.onChangeLog({...item,type:'task'});
+            updateLogs({...item,type:'task'});
         }
     }
 
