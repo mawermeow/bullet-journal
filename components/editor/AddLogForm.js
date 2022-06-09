@@ -6,6 +6,7 @@ import ExclamationCircle from "../icon/ExclamationCircle";
 import LightBulb from "../icon/LightBulb";
 import Flag from "../icon/Flag";
 import JournalDetailContext from "../../store/JournalDetailContext";
+import LanguageContext from "../../store/LanguageContext";
 
 const AddLogForm=(props)=>{
     const [logType,setLogType] = useState('');
@@ -13,6 +14,7 @@ const AddLogForm=(props)=>{
     const {logs, saveLogs} = useContext(JournalDetailContext);
     const {showNotification} = useContext(NotificationContext);
     const {tagName} = props;
+    const {languageText} = useContext(LanguageContext);
 
     const addLogHandler=async (event)=>{
         event.preventDefault();
@@ -60,9 +62,9 @@ const AddLogForm=(props)=>{
                 </div>
 
                 <div className={classes.actions}>
-                    <button onClick={()=>setLogType('task')}><ExclamationCircle/> 任務</button>
-                    <button onClick={()=>setLogType('event')}><LightBulb/> 經驗</button>
-                    <button onClick={()=>setLogType('notes')}><Flag/> 註記</button>
+                    <button onClick={()=>setLogType('task')}><ExclamationCircle/> {languageText.buttonTask}</button>
+                    <button onClick={()=>setLogType('event')}><LightBulb/> {languageText.buttonEvent}</button>
+                    <button onClick={()=>setLogType('notes')}><Flag/> {languageText.buttonNotes}</button>
                 </div>
             </form>
         </section>

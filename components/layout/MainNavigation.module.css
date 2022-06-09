@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10%;
+    padding: 0 5%;
 }
 
 .header ul {
@@ -17,7 +17,7 @@
 }
 
 .header li {
-    margin: 0 var(--size-4);
+    margin: 0 var(--size-2);
 }
 
 .header a {
@@ -46,11 +46,18 @@
     padding: 0.5rem 1.5rem;
     border-radius: 6px;
     cursor: pointer;
+    width: 5.2rem;
 }
 
 .header button:hover {
     background-color: var(--color-main-50);
     color: var(--color-main-800);
+}
+
+.end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 @media (min-width: 768px) {

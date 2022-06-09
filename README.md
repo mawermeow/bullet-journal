@@ -45,6 +45,9 @@ all the notes with the tag added. Notes added on this page will be added with th
 
 ![](https://media.giphy.com/media/tTzCGPRocuu30qy11s/giphy.gif)
 
+You can quickly switch between Chinese and English from the navigation bar.
+
+![](https://media.giphy.com/media/INxpEPyTZXtlqpwPEW/giphy.gif)
 
 ## About the project
 
@@ -58,8 +61,7 @@ All css is using css module. Each and every icon is 100% css except the SVG.
 
 ### Language
 
-Since most of my friends use traditional Chinese, this project is temporarily presented in traditional Chinese. In the
-future, I will add the function of multi-language conversion.
+This small project may not need to use multi-language translation, so I only use a useContext to solve the need for language switching.
 
 
 ## Project setup

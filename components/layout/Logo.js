@@ -1,6 +1,9 @@
 import classes from "./Logo.module.css";
+import {useContext} from "react";
+import LanguageContext from "../../store/LanguageContext";
 
 const Logo=()=>{
-    return <div className={classes.logo}>子彈筆記</div>
+    const {languageText} = useContext(LanguageContext);
+    return <div className={classes.logo}>{languageText.logo}</div>
 };
 export default Logo;

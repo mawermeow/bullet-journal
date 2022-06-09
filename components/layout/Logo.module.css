@@ -1,14 +1,24 @@
 .logo {
     text-transform: uppercase;
-    font-size: var(--size-6);
+    font-size: var(--size-8);
     font-weight: bold;
     font-family: 'Oswald', sans-serif;
     color: var(--color-main-50);
+    width: 8rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 400px) {
     .logo {
-        font-size: var(--size-8);
+        font-size: var(--size-6);
         white-space: nowrap;
+        width: 6rem;
+    }
+}
+
+@media (max-width: 350px) {
+    .logo {
+        font-size: var(--size-4);
+        white-space: nowrap;
+        width: 4rem;
     }
 }

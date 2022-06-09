@@ -1,5 +1,5 @@
 import classes from "./LogItemEditor.module.css";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Calendar from "../icon/Calendar";
 import Hashtag from "../icon/Hashtag";
 import ChatAlt from "../icon/ChatAlt";
@@ -7,6 +7,7 @@ import Save from "../icon/Save";
 import Trash from "../icon/Trash";
 import XCircle from "../icon/XCircle";
 import Pencil from "../icon/Pencil";
+import LanguageContext from "../../store/LanguageContext";
 
 const formatDate = (dateStr) => {
     return dateStr.replace(/-/g, '/')
@@ -18,6 +19,7 @@ const unFormatDate = (dateStr) => {
 
 const LogItemEditor = (props) => {
     const {detailLog,saveDetailLog,hideDetailLog} = props.journalCtx;
+    const {languageText} = useContext(LanguageContext);
 
     const [title, setTitle] = useState(detailLog.title);
     const [tag, setTag] = useState(detailLog.tag);
@@ -37,19 +39,19 @@ const LogItemEditor = (props) => {
         <div className={classes.backdrop} onClick={hideDetailLog}/>
         <div className={classes.detailModal}>
 
-            <h2><Pencil/> 編輯筆記</h2>
+            <h2><Pencil/> {languageText.editLogTitle}</h2>
             <div className={classes.control}>
-                <label htmlFor="title"><ChatAlt/> 內容</label>
+                <label htmlFor="title"><ChatAlt/> {languageText.editLogContent}</label>
                 <textarea rows="3" id="title" value={title} onChange={event => setTitle(event.target.value)}/>
             </div>
 
             <div className={classes.row}>
                 <div className={classes.control}>
-                    <label htmlFor="date"><Calendar/> 執行日期</label>
+                    <label htmlFor="date"><Calendar/> {languageText.editLogsDate}</label>
                     <input type="date" id="date" value={date} onChange={event => setDate(event.target.value)}/>
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor="date"><Hashtag/> 自定義標籤</label>
+                    <label htmlFor="date"><Hashtag/> {languageText.editLogTag}</label>
                     <input type="text" id="tag" value={tag} onChange={event => setTag(event.target.value)}/>
                 </div>
             </div>
@@ -57,13 +59,13 @@ const LogItemEditor = (props) => {
 
             <div className={classes.detailModal__actions}>
                 <button type="button" onClick={saveDetailLogHandler}>
-                    <Save/> 儲存
+                    <Save/> {languageText.editLogsSave}
                 </button>
                 <button type="button" onClick={deleteDetailLogHandler}>
-                    <Trash/> 刪除
+                    <Trash/> {languageText.editLogsDelete}
                 </button>
                 <button type="button" onClick={hideDetailLog}>
-                    <XCircle/> 取消
+                    <XCircle/> {languageText.editLogsCancel}
                 </button>
             </div>
 

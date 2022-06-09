@@ -2,12 +2,13 @@ import {useState, useRef, useContext} from 'react';
 import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import NotificationContext from "../../store/NotificationContext";
-
+import LanguageContext from "../../store/LanguageContext";
 import classes from './AuthForm.module.css';
 import Mail from "../icon/Mail";
 import Key from "../icon/Key";
 
 async function createUser(email, password) {
+
     const response = await fetch('/api/auth/signup', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
@@ -27,6 +28,7 @@ async function createUser(email, password) {
 
 function AuthForm() {
     const notificationCtx = useContext(NotificationContext);
+    const {languageText} = useContext(LanguageContext);
 
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
@@ -72,14 +74,14 @@ function AuthForm() {
 
     return (
         <section className={classes.auth}>
-            <h1>{isLogin ? '登入' : '註冊'}</h1>
+            <h1>{isLogin ? languageText.authButtonLogIn : languageText.authButtonSingUp}</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.control}>
-                    <label htmlFor='email'><Mail/> 電子信箱</label>
+                    <label htmlFor='email'><Mail/> {languageText.authEmail}</label>
                     <input type='email' id='email' required ref={emailInputRef} />
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor='password'><Key/> 密碼</label>
+                    <label htmlFor='password'><Key/> {languageText.authPassword}</label>
                     <input
                         type='password'
                         id='password'
@@ -88,13 +90,13 @@ function AuthForm() {
                     />
                 </div>
                 <div className={classes.actions}>
-                    <button>{isLogin ? '登入' : '註冊'}</button>
+                    <button>{isLogin ? languageText.authButtonLogIn : languageText.authButtonSingUp}</button>
                     <button
                         type='button'
                         className={classes.toggle}
                         onClick={switchAuthModeHandler}
                     >
-                        {isLogin ? '註冊新帳號' : '已有帳號，我要登入'}
+                        {isLogin ? languageText.authCaptionSignUp : languageText.authCaptionLogIn}
                     </button>
                 </div>
             </form>

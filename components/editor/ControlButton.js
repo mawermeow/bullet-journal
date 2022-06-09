@@ -1,8 +1,10 @@
 import classes from "./ControlButton.module.css";
 import {useContext} from "react";
 import JournalDetailContext from "../../store/JournalDetailContext";
+import LanguageContext from "../../store/LanguageContext";
 
 const ControlButton = (props) => {
+    const {languageText} = useContext(LanguageContext);
     const {multiChangedLog,setMultiChangedLog} = useContext(JournalDetailContext);
 
     const {sortLog, showPastLog, showFutureLog, showTaskLog,editMode} = props;
@@ -10,17 +12,17 @@ const ControlButton = (props) => {
     return <div className={classes.controlButton}>
         <span className={showPastLog ? classes.unControlButton:''}>
             <button onClick={() => props.onTogglePastLog()}>
-                過去
+                {languageText.buttonControlPast}
             </button>
         </span>
         <span className={showFutureLog ? classes.unControlButton:''}>
             <button onClick={() => props.onToggleFutureLog()}>
-                未來
+                {languageText.buttonControlFuture}
             </button>
         </span>
         <span className={showTaskLog ? classes.unControlButton:''}>
             <button onClick={() => props.onToggleTaskLog()}>
-                任務
+                {languageText.buttonControlTask}
             </button>
         </span>
         <span className={editMode ? classes.unControlButton:''}>
@@ -30,11 +32,11 @@ const ControlButton = (props) => {
                 }
                 props.onToggleEditMode()
             }}>
-                編輯
+                {languageText.buttonControlEdit}
             </button>
         </span>
         <button onClick={() => props.onToggleSortLog()}>
-            {sortLog ? '舊>新' : '新>舊'}
+            {sortLog ? languageText.buttonControlOldNew : languageText.buttonControlNewOld}
         </button>
 
     </div>
