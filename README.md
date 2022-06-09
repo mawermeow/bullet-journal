@@ -11,6 +11,7 @@
 
 Live at [bullet-journal.mawer.cc](https://bullet-journal.mawer.cc)
 
+
 ## Description
 
 This project is for my own note-taking needs to quickly jot down short tasks or inspirations, and allow for tagging for
@@ -18,25 +19,30 @@ categorization.
 
 **This project is inspired by Ryder Carroll. Go check out his book [Here](https://bulletjournal.com/pages/book).**
 
+
 ## How to use
 
 Every time open it, it only shows the events and tasks I need for the day — I expect myself to live in the present
 moment.
+
 ![](https://media.giphy.com/media/gGYOOwVbLEXS5aYGdf/giphy.gif)
 
 If you need to view past or future notes, you can use the five function buttons above, they are: display past or future
 notes, only display unfinished tasks, batch editing and date sorting.
+
 ![](https://media.giphy.com/media/u8lSlM0CaTSB6DhKcQ/giphy.gif)
 
 Whenever a note is tagged, there will be an additional option on the tag page, and after clicking it, you can browse to
 all the notes with the tag added. Notes added on this page will be added with this label by default.
+
 ![](https://media.giphy.com/media/tTzCGPRocuu30qy11s/giphy.gif)
+
 
 ## About the project
 
 ### Authentication
 
-The authentication function uses two third-party libraries, next-auth and bcryptjs.
+The authentication function uses two third-party libraries, [next-auth](https://next-auth.js.org/) and [bcryptjs](https://github.com/kelektiv/node.bcrypt.js/).
 
 ### CSS
 
@@ -46,6 +52,7 @@ All css is using css module. Each and every icon is 100% css except the SVG.
 
 Since most of my friends use traditional Chinese, this project is temporarily presented in traditional Chinese. In the
 future, I will add the function of multi-language conversion.
+
 
 ## Project setup
 
