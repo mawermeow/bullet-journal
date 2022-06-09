@@ -27,6 +27,14 @@ moment.
 
 ![](https://media.giphy.com/media/gGYOOwVbLEXS5aYGdf/giphy.gif)
 
+Quickly add your tasks.
+
+![](https://media.giphy.com/media/Q6IV8sWYVCL41ey5ql/giphy.gif)
+
+Simply click on the legend to complete your task.
+
+![](https://media.giphy.com/media/q9O6xuokfbGhegUc6m/giphy.gif)
+
 If you need to view past or future notes, you can use the five function buttons above, they are: display past or future
 notes, only display unfinished tasks, batch editing and date sorting.
 
