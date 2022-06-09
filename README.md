@@ -22,15 +22,15 @@ categorization.
 
 Every time open it, it only shows the events and tasks I need for the day — I expect myself to live in the present
 moment.
-![](./readme_assets/1.gif)
+![](https://media.giphy.com/media/gGYOOwVbLEXS5aYGdf/giphy.gif)
 
 If you need to view past or future notes, you can use the five function buttons above, they are: display past or future
 notes, only display unfinished tasks, batch editing and date sorting.
-![](./readme_assets/2.gif)
+![](https://media.giphy.com/media/u8lSlM0CaTSB6DhKcQ/giphy.gif)
 
 Whenever a note is tagged, there will be an additional option on the tag page, and after clicking it, you can browse to
 all the notes with the tag added. Notes added on this page will be added with this label by default.
-![](./readme_assets/3.gif)
+![](https://media.giphy.com/media/tTzCGPRocuu30qy11s/giphy.gif)
 
 ## About the project
 
